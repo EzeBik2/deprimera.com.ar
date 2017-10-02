@@ -2,7 +2,7 @@
 @model Todos
 
 <header>
-    <nav class="navbar navbar-default navbar-fixed-top" style="display: block; width: 100%; height:5%; background-color: darkslateblue; color: black;">
+    <nav class="navbar-fixed-top" style="display: block; width: 100%; height:5%; color: black;">
         <div class="container">
             <div class="collapse navbar-collapse">
                 <a href="@Url.Action("IrAIndex", "Home", ViewBag.jugadorqueselogueo, null)">
@@ -16,7 +16,7 @@
                     <button type="submit" class="btn btn-default" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-search"> </span></button>
                 </form> <!-- Formulario para buscar cualquiercosa -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Mensajes <span class="badge">42</span></a></li>
+                    <li style="display: inline-block; background-image: url(../../Content/BloqueNav.jpg); margin-left: 5px; margin-top: 10px; color: white;"><a href="#">Mensajes <span class="badge">42</span></a></li>
                     <li><a href="#">Notificaciones <span class="badge">3</span></a></li>
                     <li class="dropdown">
                         <!-- Dropdown en la Navbar -->

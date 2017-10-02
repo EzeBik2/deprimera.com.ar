@@ -30,6 +30,8 @@ namespace deprimera.com.ar.Controllers
 
         public ActionResult IrAIndex(Jugador jugadorqueseestalogueando)
         {
+            ViewBag.Combobox = Canchas.TraerNombresDeTodasLasCanchas(); //Trae la lista de todas las canchas que existen
+
             //Traer Listas
             ViewBag.jugadorqueselogueo = jugadorqueseestalogueando;
             return View("Index"); //Si fallo el programa que vuelva a inicio.
@@ -161,7 +163,7 @@ namespace deprimera.com.ar.Controllers
             //FALTA QUE TRAIGA LISTA DE JUGADORES DEL PARTIDO CON VALIDACION PARA QUE QUITE TODOS LOS INVALIDOS
             Partido PartidoABuscar = new Partido();
             PartidoABuscar.id = Convert.ToInt32(IddePartido.Substring(2, IddePartido.Length - 2));
-            PartidoABuscar = Partidos.TraerUnPartido(PartidoABuscar);
+            PartidoABuscar = Partidos.TraerUnPartidoPorId(PartidoABuscar);
             ViewBag.A = PartidoABuscar;
             return View("PerfilPartido");
         }
@@ -174,7 +176,7 @@ namespace deprimera.com.ar.Controllers
             unPartido2.Fecha = partidoaarmar.fecha;
 
             Cancha canchadelPartido = new Cancha(); //Traigo el ID de la cancha del partido
-            canchadelPartido.nombre = partidoaarmar.canchas[0];
+            canchadelPartido.nombre = partidoaarmar.canchas;
             canchadelPartido = Canchas.TraerCancha(canchadelPartido);
             unPartido2.IdCancha = canchadelPartido.id;
 

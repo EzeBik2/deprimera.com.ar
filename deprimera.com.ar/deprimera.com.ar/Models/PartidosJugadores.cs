@@ -29,67 +29,74 @@ namespace deprimera.com.ar.Models
             //connMySQL.ConnectionString = @"Data Source=localhost; Database=DBRSF; User ID=root; Password='root'";
             //connMySQL.Open();
         }
-
         public static string AgregarJugadorAPartido(PartidoJugador unJugadorPartido)
         {
             string Error = null;
-            //try
-            //{
-            //    ConectarDB();
-
-            //    querystr = "INSERT into PartidosJugadores (estado, idPartido, idJugador) VALUES ('En formacion', '" + unJugadorPartido.idPartido + "', '" + unJugadorPartido.idJugador + "' )";
-            //    cmdMySQL = new MySqlCommand(querystr, connMySQL);
-
-            //    int resultado = (int)cmdMySQL.ExecuteNonQuery();
-            //    bool funciono = false;
-            //    if (resultado == 1)
-            //    {
-            //        funciono = true;
-            //    }
-
-            //    connMySQL.Close();
-            //}
-
-            //catch (Exception ErrorMySQL)
-            //{
-            //    Error = ErrorMySQL.ToString();
-            //    connMySQL.Close();
-            //}
 
             try
             {
                 ConectarDB();
 
-                OleDbCommand Consulta = connAccess.CreateCommand();
-                Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-                Consulta.CommandText = "AgregarB";
+                //try
+                //{
+                //    querystr = "INSERT into PartidosJugadores (estado, idPartido, idJugador) VALUES ('En formacion', '" + unJugadorPartido.idPartido + "', '" + unJugadorPartido.idJugador + "' )";
+                //    cmdMySQL = new MySqlCommand(querystr, connMySQL);
 
-                OleDbParameter estado = new OleDbParameter("Estado", "En Formacion");
-                OleDbParameter partido = new OleDbParameter("idpartido", unJugadorPartido.idPartido);
-                OleDbParameter jugador = new OleDbParameter("idjugador", unJugadorPartido.idJugador);
+                //    int resultado = (int)cmdMySQL.ExecuteNonQuery();
+                //    bool funciono = false;
+                //    if (resultado == 1)
+                //    {
+                //        funciono = true;
+                //    }
 
+                //    connMySQL.Close();
+                //}
 
-                Consulta.Parameters.Add(estado);
-                Consulta.Parameters.Add(partido);
-                Consulta.Parameters.Add(jugador);
+                //catch (Exception ErrorMySQL)
+                //{
+                //    Error = ErrorMySQL.ToString();
+                //    connMySQL.Close();
+                //}
 
-
-                int resultado = (int)Consulta.ExecuteNonQuery();
-                bool funciono = false;
-                if (resultado == 1)
+                try
                 {
-                    funciono = true;
+                    OleDbCommand Consulta = connAccess.CreateCommand();
+                    Consulta.CommandType = System.Data.CommandType.StoredProcedure;
+                    Consulta.CommandText = "AgregarB";
+
+                    OleDbParameter estado = new OleDbParameter("Estado", "En Formacion");
+                    OleDbParameter partido = new OleDbParameter("idpartido", unJugadorPartido.idPartido);
+                    OleDbParameter jugador = new OleDbParameter("idjugador", unJugadorPartido.idJugador);
+
+
+                    Consulta.Parameters.Add(estado);
+                    Consulta.Parameters.Add(partido);
+                    Consulta.Parameters.Add(jugador);
+
+
+                    int resultado = (int)Consulta.ExecuteNonQuery();
+                    bool funciono = false;
+                    if (resultado == 1)
+                    {
+                        funciono = true;
+                    }
+
+                    connAccess.Close();
                 }
 
-                connAccess.Close();
+                catch (Exception ErrorAccess)
+                {
+                    connAccess.Close();
+                }
+
+                return Error;
             }
 
-            catch (Exception ErrorAccess)
-            {
-                connAccess.Close();
+            catch (Exception ErrorConexionBD)
+            {     
+                return ErrorConexionBD.ToString();
             }
 
-            return Error;
         }
 
     }
