@@ -30,11 +30,20 @@ namespace deprimera.com.ar.Controllers
 
         public ActionResult IrAIndex(Jugador jugadorqueseestalogueando)
         {
-            ViewBag.Combobox = Canchas.TraerNombresDeTodasLasCanchas(); //Trae la lista de todas las canchas que existen
+            //ViewBag.Combobox = Canchas.TraerNombresDeTodasLasCanchas(); //Trae la lista de todas las canchas que existen
 
             //Traer Listas
             ViewBag.jugadorqueselogueo = jugadorqueseestalogueando;
             return View("Index"); //Si fallo el programa que vuelva a inicio.
+        }
+
+        public ActionResult IrAPartido(Jugador jugadorqueseestalogueando)
+        {
+            //ViewBag.Combobox = Canchas.TraerNombresDeTodasLasCanchas(); //Trae la lista de todas las canchas que existen
+
+            //Traer Listas
+            ViewBag.jugadorqueselogueo = jugadorqueseestalogueando;
+            return View("Partido"); //Si fallo el programa que vuelva a inicio.
         }
 
         public ActionResult Registrarse(Jugador jugadorqueseestaregistrando)
@@ -168,70 +177,70 @@ namespace deprimera.com.ar.Controllers
             return View("PerfilPartido");
         }
 
-        public ActionResult ArmarPartido(Todos partidoaarmar)
-        {
-            // FALTA COMPROBAR HORARIOS DE LOS USUARIOS Y DE LAS CANCHAS
-            Partido unPartido2 = new Partido();
-            unPartido2.CantJug = partidoaarmar.cantjug;
-            unPartido2.Fecha = partidoaarmar.fecha;
+        //public ActionResult ArmarPartido(Todos partidoaarmar)
+        //{
+        //    // FALTA COMPROBAR HORARIOS DE LOS USUARIOS Y DE LAS CANCHAS
+        //    Partido unPartido2 = new Partido();
+        //    unPartido2.CantJug = partidoaarmar.cantjug;
+        //    unPartido2.Fecha = partidoaarmar.fecha;
 
-            Cancha canchadelPartido = new Cancha(); //Traigo el ID de la cancha del partido
-            canchadelPartido.nombre = partidoaarmar.canchas;
-            canchadelPartido = Canchas.TraerCancha(canchadelPartido);
-            unPartido2.IdCancha = canchadelPartido.id;
+        //    Cancha canchadelPartido = new Cancha(); //Traigo el ID de la cancha del partido
+        //    canchadelPartido.nombre = partidoaarmar.canchas;
+        //    canchadelPartido = Canchas.TraerCancha(canchadelPartido);
+        //    unPartido2.IdCancha = canchadelPartido.id;
 
-            unPartido2 = Partidos.ArmarPartido(unPartido2); //Agrego el partido a la BD y Traigo el partido con su ID
+        //    unPartido2 = Partidos.ArmarPartido(unPartido2); //Agrego el partido a la BD y Traigo el partido con su ID
 
-            PartidoJugador crearrelacionpartidojugador = new PartidoJugador();
-            crearrelacionpartidojugador.idJugador = partidoaarmar.id;
-            crearrelacionpartidojugador.idPartido = unPartido2.id;
-            string Error = PartidosJugadores.AgregarJugadorAPartido(crearrelacionpartidojugador); //Agrego el jugador a el partido
+        //    PartidoJugador crearrelacionpartidojugador = new PartidoJugador();
+        //    crearrelacionpartidojugador.idJugador = partidoaarmar.id;
+        //    crearrelacionpartidojugador.idPartido = unPartido2.id;
+        //    string Error = PartidosJugadores.AgregarJugadorAPartido(crearrelacionpartidojugador); //Agrego el jugador a el partido
 
-            if (Error == null && unPartido2.Funciono == null && canchadelPartido == null) //Se fija si hubo errores
-            {
-                Todos PerfilPartido = new Todos();
-                PerfilPartido.id = partidoaarmar.id;
-                PerfilPartido.nombre = "#P" + unPartido2.id;
-                return BuscarTodo(PerfilPartido);                                      //Muestra el perfil del partido
-            }
-            else                                                                       //Si hubo errores los muestra en la pantalla de Index
-            {
-                ViewBag.Error = canchadelPartido.nombre;
-                ViewBag.Error2 = unPartido2.Funciono;
-                ViewBag.Error3 = Error;
-                Jugador UsuarioLogueado = new Jugador();
-                UsuarioLogueado.id = partidoaarmar.id;
-                return IrAIndex(UsuarioLogueado);
-            }            
-        }
-        public ActionResult ArmarEquipo(Todos equipoaarmar)
-        {
-            //FALTA COMPROBAR SI EXISTE EL NOMBRE DEL EQUIPO
-            Equipo unEquipo = new Equipo();
-            unEquipo.nombre = equipoaarmar.nombre;
-            unEquipo.cantjug = equipoaarmar.cantjug;
-            unEquipo = Equipos.ArmarEquipo(unEquipo); //Agrego el equipo a la BD y Traigo el equipo con su ID
-            if (unEquipo.Funciono != null)
-            {
-                ViewBag.Error = unEquipo.Funciono;
-            }
+        //    if (Error == null && unPartido2.Funciono == null && canchadelPartido == null) //Se fija si hubo errores
+        //    {
+        //        Todos PerfilPartido = new Todos();
+        //        PerfilPartido.id = partidoaarmar.id;
+        //        PerfilPartido.nombre = "#P" + unPartido2.id;
+        //        return BuscarTodo(PerfilPartido);                                      //Muestra el perfil del partido
+        //    }
+        //    else                                                                       //Si hubo errores los muestra en la pantalla de Index
+        //    {
+        //        ViewBag.Error = canchadelPartido.nombre;
+        //        ViewBag.Error2 = unPartido2.Funciono;
+        //        ViewBag.Error3 = Error;
+        //        Jugador UsuarioLogueado = new Jugador();
+        //        UsuarioLogueado.id = partidoaarmar.id;
+        //        return IrAIndex(UsuarioLogueado);
+        //    }            
+        //}
+        //public ActionResult ArmarEquipo(Todos equipoaarmar)
+        //{
+        //    //FALTA COMPROBAR SI EXISTE EL NOMBRE DEL EQUIPO
+        //    Equipo unEquipo = new Equipo();
+        //    unEquipo.nombre = equipoaarmar.nombre;
+        //    unEquipo.cantjug = equipoaarmar.cantjug;
+        //    unEquipo = Equipos.ArmarEquipo(unEquipo); //Agrego el equipo a la BD y Traigo el equipo con su ID
+        //    if (unEquipo.Funciono != null)
+        //    {
+        //        ViewBag.Error = unEquipo.Funciono;
+        //    }
 
-            EquipoJugador crearrelacionequipojugador = new EquipoJugador();
-            crearrelacionequipojugador.idJugador = equipoaarmar.id;
-            crearrelacionequipojugador.idEquipo = unEquipo.id;
-            string Error = EquiposJugadores.AgregarJugadorAEquipo(crearrelacionequipojugador);
-            if (Error != null)
-            {
-                ViewBag.Error2 = Error;
-            }
+        //    EquipoJugador crearrelacionequipojugador = new EquipoJugador();
+        //    crearrelacionequipojugador.idJugador = equipoaarmar.id;
+        //    crearrelacionequipojugador.idEquipo = unEquipo.id;
+        //    string Error = EquiposJugadores.AgregarJugadorAEquipo(crearrelacionequipojugador);
+        //    if (Error != null)
+        //    {
+        //        ViewBag.Error2 = Error;
+        //    }
 
-            if (Error == null && unEquipo.Funciono == null)
-            {
-                //Ir a Perfil con Buscar Todo y Enviar Datos
-            }
-            Jugador JTH = new Jugador();
-            JTH.id = equipoaarmar.id;
-            return IrAIndex(JTH);
-        }
+        //    if (Error == null && unEquipo.Funciono == null)
+        //    {
+        //        //Ir a Perfil con Buscar Todo y Enviar Datos
+        //    }
+        //    Jugador JTH = new Jugador();
+        //    JTH.id = equipoaarmar.id;
+        //    return IrAIndex(JTH);
+        //}
     }
 }

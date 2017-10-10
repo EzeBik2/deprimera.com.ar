@@ -1,0 +1,219 @@
+*
+{
+	margin:0;
+	padding:0;
+}
+
+@font-face 
+{
+font-family: Reitam;
+src:url(fonts/Reitam.otf);
+}
+
+#full-screen-background-image 
+{
+    z-index: -999;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+	background-attachment: fixed
+}	
+
+
+section {
+	width: 100%;
+	display: block;
+}
+.MenuPersonal
+{
+	height: 50px;
+	margin-top: 30px;
+	margin-right: 40px;
+	display: block;
+}
+.Triangulo {
+	float: right;
+	width:0;
+	height:0;
+	border-right: 25.5px solid #545454;
+	border-top: 25.5px solid transparent;
+	border-left: 24px solid transparent;
+	border-bottom: 24px solid #545454;
+	opacity:0.9;
+}
+.Barra {
+	float: right;
+	background-color:#545454;
+	width: auto;
+	opacity:0.9;
+	height: 50px;
+}
+.NombreUsuario {
+	font-family: Reitam;
+	text-align:center;
+	text-decoration:none;
+	color:#D6DDDC;
+	float: left;
+	margin-right: 10px;
+	margin-top: 13px;
+}
+.Iconos {
+	float: left;
+	margin-right: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.MenuPrincipal {
+	margin-top: 10px;
+	display: block;
+}
+ul {
+	background-color: #545454;	
+	font-family: Reitam;
+	opacity: 0.9;
+	width: 766px;
+	display: block;
+}
+li {
+	display: inline-block;
+	width: 150px;
+	text-align: center;
+}
+A {
+	font-size: 18px;
+	text-align: center;
+	color: #D6DDDC;
+	text-decoration: none;
+	line-height:30px;
+}
+li:hover {
+	color:#FFE200;
+	background-color:#262726;
+	border-bottom:3px solid #FFE200;
+	height: 27px;
+}
+.PrimeraMitad {
+	margin-top: 20px;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	height: 350px;
+}
+.Bloque {
+	background-color:#262726;
+	opacity:0.92;	
+	height: 100%;
+	width: 45%;
+	float: left;
+	margin-bottom: 20px;
+	color:#D6DDDC;
+}
+.Bloque:hover {
+	background-color: #FFE200;
+	border-bottom: 15px solid #FFE200;
+	border-left: 15px solid #FFE200;
+	margin-bottom: 5px;
+	color: black;
+	opacity:1;	
+}
+.TituloYDecripcion {
+	height: 90%;
+	float: left;
+	width: 40%;
+	margin-left: 25px;
+	margin-top: 15px;
+}
+h1 {
+	font-family: Reitam;
+	text-align:left;
+	margin-top:10px;
+	font-size: 30px;	
+}
+p {
+	font-family: Reitam;
+	text-align:left;
+	margin-top:20px;
+}
+.Imagen1 {
+	height: 100%;
+	width: 55%;
+	float: right;
+}
+.Derecha {
+	height: 100%;
+	width: 45%;
+	float: left;
+	margin-bottom: 20px;
+	margin-left: 20px;
+}
+.SegundaMitad {
+	width: 90%;
+	height: 250px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.Rectangulo {
+	height: 47%;
+	width: 100%;
+	background-color:#262726;
+	opacity:0.92;
+	display: block;
+	color:#D6DDDC;
+}
+.Rectangulo:hover {
+	background-color: #FFE200;
+	border-bottom: 15px solid #FFE200;
+	border-left: 15px solid #FFE200;
+	margin-bottom: 5px;
+	color: black;
+	opacity:1;	
+}
+.Titulo {
+	height: 90%;
+	float: left;
+	width: 30%;
+	margin-left: 25px;
+	margin-top: 15px;
+}
+.Imagen2 {
+	height: 100%;
+	width: 60%;
+	float: right;	
+	margin-right: 15px;
+}
+.DosMiniBloques {
+	height: 90%;
+	width: 45%;
+	float: left;
+}
+.MiniBloque {
+	background-color:#262726;
+	width: 45%;
+	height: 100%;
+	opacity:0.92;
+	float: left;
+	color:#D6DDDC;
+	margin-left: 25px;
+}
+.MiniBloque:hover {
+	background-color: #FFE200;
+	border-bottom: 10px solid #FFE200;
+	border-left: 10px solid #FFE200;
+	margin-left: 15px;
+	opacity:1;	
+	color: black;
+}
+.TituloYDecripcion2 {
+	height: 90%;
+	float: left;
+	width: 35%;
+	margin-left: 25px;
+	margin-top: 15px;
+}
+.Imagen3 {
+	height: 100%;
+	width: 60%;
+	float: right;
+}

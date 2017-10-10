@@ -1,4 +1,4 @@
-﻿@using deprimera.com.ar.Models
+﻿@*@using deprimera.com.ar.Models
 @model Todos
 
 <header>
@@ -103,4 +103,82 @@
         </script>
         <br />
     </form> <!-- Formulario de creacion de Equipo -->
-</main>
+</main>*@
+@{
+    Layout = null;
+}
+<head>
+    <link href="~/Content/Estilos.css" rel="stylesheet" type="text/css" />
+    <img id="full-screen-background-image" src="~/Content/Fondo.jpg" />
+</head>
+<body>
+    <header>
+        <section>
+            <div class="MenuPersonal">
+                <div class="Barra">
+                    <a class="A NombreUsuario">NOMBRE DE USUARIO</a>
+                    <img class="Iconos" src="~/Content/perfil.png" style="height: 40px; width: 40px; image-align: center; float: center;" />
+                    <img class="Iconos" src="~/Content/notificaciones.png" style="height: 40px; width: 40px; image-align: center; float: center;" />
+                </div>
+                <div class="Triangulo"></div>
+            </div>
+        </section>
+        <section>
+            <div class="MenuPrincipal">
+                <ul>
+                    <li><a class="A" href="@Url.Action("IrAIndex", "Home", ViewBag.jugadorqueselogueo, null)">INICIO</a></li>
+                    <li><a class="A" href="@Url.Action("IrAPartido", "Home", ViewBag.jugadorqueselogueo, null)">PARTIDO</a></li>
+                    <li><a class="A" href="#">EQUIPO</a></li>
+                    <li><a class="A" href="#">BUSCAR</a></li>
+                    <li><a class="A" href="#">CHAT</a></li>
+                </ul>
+            </div>
+        </section>
+    </header>
+
+    <main>
+        <section>
+            <div class="PrimeraMitad">
+                <a href="#" class="Bloque">
+                    <div class="TituloYDecripcion">
+                        <h1> SOLO </h1>
+                        <p> Arma un partido solo con todas personas desconocidas. </p>
+                    </div>
+                    <img src="~/Content/CristianoRonaldo.png" class="Imagen1" />
+                </a>
+                <a href="#" class="Bloque" style="margin-left: 20px;">
+                    <div class="TituloYDecripcion">
+                        <h1> FALTA GENTE </h1>
+                        <p> Arma un partido con tus amigos y completa el equipo con desconocidos. </p>
+                    </div>
+                    <img src="~/Content/equipo.png" class="Imagen1" />
+                </a>
+            </div>
+        </section>
+        <section>
+            <div class="SegundaMitad">
+                <a href="#" class="Rectangulo">
+                    <div class="Titulo">
+                        <h1>PARTIDOS CON VACANTES<h1 />
+                    </div>
+                    <img src="~/Content/Puyol.png" class="Imagen2" />
+                </a>
+                <div class="DosMiniBloques">
+                    <a href="#" class="MiniBloque">
+                        <div class="Titulo">
+                            <h1>TUTORIAL<h1 />
+                        </div>
+                        <img src="~/Content/Zidane.png" class="Imagen3" />
+                    </a>
+                    <a href="#" class="MiniBloque">
+                        <div class="Titulo">
+                            <h1>CONTACTO<h1 />
+                        </div>
+                        <img src="~/Content/Guardiola.png" class="Imagen3" />
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer style="height: 500px; width: 100%;"></footer>
+</body>
