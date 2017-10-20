@@ -26,12 +26,25 @@ section {
 	width: 100%;
 	display: block;
 }
+.TOP {
+	width: 100%;
+	height: 150px;
+}
+.Logo {
+	margin-right: 30px;
+	margin-left: 40px;
+	float: left;
+	width: 350px;
+	height: 150px;
+	display: inline-block;
+}
 .MenuPersonal
 {
 	height: 50px;
 	margin-top: 30px;
-	margin-right: 40px;
-	display: block;
+	margin-right: 80px;
+	float: right;
+	display: inline-block;
 }
 .Triangulo {
 	float: right;
