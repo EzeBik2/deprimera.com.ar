@@ -5,17 +5,17 @@
 
 @font-face {
     font-family: DINPro-Cond;
-    src: url('/Content/fonts/DINPro-Cond.otf');
+    src: url('/fonts/DINPro-Cond.otf');
 }
 
 @font-face {
     font-family: EA;
-    src: url('/Content/fonts/EALogo.ttf');
+    src: url('/fonts/EALogo.ttf');
 }
 
 @font-face {
     font-family: OpenSans-Regular;
-    src: url('/Content/fonts/OpenSans-Regular.ttf');
+    src: url('/fonts/OpenSans-Regular.ttf');
 }
 
 .Primera {

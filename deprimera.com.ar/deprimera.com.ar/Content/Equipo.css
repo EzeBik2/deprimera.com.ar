@@ -1,22 +1,22 @@
 @font-face {
 font-family: DINPro-Cond;
-src:url(/Content/fonts/DINPro-Cond.otf);
+src:url(/fonts/DINPro-Cond.otf);
 }
 
 @font-face 
 {
 font-family: Reitam;
-src:url(/Content/fonts/Reitam.otf);
+src:url(/fonts/Reitam.otf);
 }
 
 @font-face {
 font-family: EA;
-src:url(/Content/fonts/EALogo.otf);
+src:url(/fonts/EALogo.otf);
 }
 
 @font-face {
 font-family: OpenSans-Regular;
-src:url(/Content/fonts/OpenSans-Regular.otf);
+src:url(/fonts/OpenSans-Regular.otf);
 }
 main {
     height: 700px;
