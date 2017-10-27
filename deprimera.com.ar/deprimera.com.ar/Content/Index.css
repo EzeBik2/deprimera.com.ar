@@ -1,0 +1,106 @@
+@font-face 
+{
+font-family: Reitam;
+src:url(/Content/fonts/Reitam.otf);
+}
+
+.PrimeraMitad {
+	margin-top: 20px;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	height: 350px;
+}
+.Bloque {
+	background-color:#262726;
+	opacity:0.92;	
+	height: 100%;
+	width: 45%;
+	float: left;
+	margin-bottom: 20px;
+	color:#D6DDDC;
+}
+.Bloque:hover {
+	background-color: #FFE200;
+	color: black;
+	opacity:1;	
+}
+.TituloYDecripcion {
+	height: 90%;
+	float: left;
+	width: 40%;
+	margin-left: 25px;
+	margin-top: 15px;
+}
+h1 {
+	font-family: Reitam;
+	text-align:left;
+	margin-top:10px;
+	font-size: 30px;	
+}
+p {
+	font-family: Reitam;
+	text-align:left;
+	margin-top:20px;
+}
+.Imagen1 {
+	height: 100%;
+	width: 55%;
+	float: right;
+}
+.SegundaMitad {
+	width: 90%;
+	height: 250px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.Rectangulo {
+	height: 90%;
+	width: 45%;
+	background-color:#262726;
+	opacity:0.92;
+	float: left;
+	color:#D6DDDC;
+}
+.Rectangulo:hover {
+	background-color: #FFE200;
+	color: black;
+	opacity:1;	
+}
+.Titulo {
+	height: 90%;
+	float: left;
+	width: 30%;
+	margin-left: 25px;
+	margin-top: 15px;
+}
+.Imagen2 {
+	height: 100%;
+	width: 65%;
+	float: right;	
+}
+.DosMiniBloques {
+	height: 90%;
+	width: 45%;
+	float: left;
+	margin-left: 20px;
+}
+.MiniBloque {
+	background-color:#262726;
+	width: 48%;
+	height: 100%;
+	opacity:0.92;
+	float: left;
+	color:#D6DDDC;
+}
+.MiniBloque:hover {
+	background-color: #FFE200;
+	opacity: 1;	
+	color: black;
+}
+.Imagen3 {
+	margin-top: 45px;
+	height: 80%;
+	width: 60%;
+	float: right;	
+}

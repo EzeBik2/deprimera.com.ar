@@ -1,101 +1,129 @@
 ﻿@using deprimera.com.ar.Models
 @model Jugador
 
-<br />
-<br />
+<head>
+    <meta charset="utf-8">
+    <title>Ejemplo menú</title>
+    <link href="~/Content/Landing.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <section>
+        <div class="Primera">
+            <a data-toggle="modal" data-target="#exampleModal"><img src="~/Content/Images/entrar.png" style="width: 400px; height: 130px; float: right;" /></a>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title" id="exampleModalLabel" style="text-align: center; font-size: 30px;">INGRESE</h2>
+                            </div>
+                            <div class="modal-body">
+                                <div class="Izq">
+                                    <form method="POST" action="@Url.Action("CrearEquipo", "Home")">
+                                        <h2>CREAR EQUIPO</h2>
+                                        @Html.TextBoxFor(x => x.id, new { @style = "display: none;", @Value = "" + ViewBag.JugadorLogueado.id })<br />
+                                        <div id="txtNombreDelEquipo">
+                                            Nombre del Equipo: @Html.TextBoxFor(x => x.nombre, new { @class = "form-control", @Value = "" })
+                                        </div>
+                                        <div id="txtCantidadDeJugadoresDelEquipo" style="display: none;">
+                                            Cantidad de Jugadores: @Html.TextBoxFor(x => x.cantjug, new { @class = "form-control", @Value = "" })
+                                        </div>
+                                        <input type="submit" value="Ultimo Paso" class="btn btn-primary" id="BotonFinal" style="display: none;" />
+                                    </form>
+                                </div>
+                                <div class="Der">
 
-<div style="margin-left: 500px;">
-    <form method="POST" action="@Url.Action("Loguearse", "Home")">
-
-        <br /> <h3>@ViewBag.Error </h3><br /> <!-- Si no encuentra al jugador devuelve un mensaje -->
-        Email: @Html.TextBoxFor(x => x.email, new { @class = "form-control", @type = "email" }) <br />
-
-        Contraseña: @Html.PasswordFor(x => x.contraseña, new { @class = "form-control" })<br />
-
-        <input type="submit" value="Ingresar" class="btn btn-primary" style="display: inline-block" />
-
-    </form> <!-- Log In -->
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"> Registrarse </button> <!-- Boton que abre el modal de Registro -->
-
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header"> <h4 class="modal-title" id="myModalLabel">Registro</h4> </div>
-                <div class="modal-body">
-                    <form name="formular" id="formular" action="@Url.Action("Registrarse", "Home")" method="POST">
-                        @ViewBag.ErrorEnElRegistro
-
-                        @Html.ValidationMessageFor(x => x.nombre)
-                        Nombre:@Html.TextBoxFor(x => x.nombre, new { @class = "form-control", @id = "Nombre", @Value = "" })<br />
-
-                        @Html.ValidationMessageFor(x => x.apellido)<br />
-                        Apellido:@Html.TextBoxFor(x => x.apellido, new { @class = "form-control", @id = "Apellido", @Value = "" })<br />
-
-                        @Html.ValidationMessageFor(x => x.edad)<br />
-                        Edad:@Html.TextBoxFor(x => x.edad, new { @class = "form-control", @type = "number", @id = "Edad", @Value = "" })<br />
-
-                        @Html.ValidationMessageFor(x => x.telefono)<br />
-                        Telefono:@Html.TextBoxFor(x => x.telefono, new { @class = "form-control", @type = "tel", @id = "Telefono", @Value = "" })<br />
-
-                        @Html.ValidationMessageFor(x => x.email)<br />
-                        Email:@Html.TextBoxFor(x => x.email, new { @class = "form-control", @type = "email", @id = "Email", @Value = "" })<br />
-
-                        @Html.ValidationMessageFor(x => x.contraseña)<br />
-                        Contraseña:@Html.PasswordFor(x => x.contraseña, new { @class = "form-control", @id = "Contraseña", @Value = "" })<br />
-
-                        @Html.ValidationMessageFor(x => x.Confcontraseña)<br />
-                        Confirmar Contraseña:@Html.PasswordFor(x => x.Confcontraseña, new { @class = "form-control", @id = "ConfirmarContraseña", @Value = "" })<br /><br />
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <input type="button" value="Registrar" onclick="Validar()" class="btn btn-primary" />
-                    </form>
-                    <script>
-                        function Validar()
-                        {
-                            var nombre = $("#Nombre").val();
-                            var apellido = $("#Apellido").val();
-                            var email = $("#Email").val();
-                            var telefono = $("#Telefono").val();
-                            var fecha = $("#Edad").val();
-                            var clave = $("#Contraseña").val();
-                            var claveb = $("#ConfirmarContraseña").val();
-                            var errores = "";
-
-                            if (nombre == "")
-                            {
-                                errores += "<p>-Debe completar el campo nombre.</p>"
-                            }
-                            if (apellido == "") {
-                                errores += "<p>-Debe completar el campo apellido.</p>"
-                            }
-                            if (email == "") {
-                                errores += "<p>-Debe completar el campo email.</p>"
-                            }
-                            if (telefono == "") {
-                                errores += "<p>-Debe completar el campo telefono.</p>"
-                            }
-                            if (fecha == "") {
-                                errores += "<p>-Debe completar el campo fecha.</p>"
-                            }
-                            if (clave == "") {
-                                errores += "<p>-Debe completar el campo contraseña.</p>"
-                            }
-                            if (claveb == "") {
-                                errores += "<p>-Debe completar el campo confirmar contraseña.</p>"
-                            }
-                            if (errores == "") {
-                                $("#formular").submit();
-                            }
-                            else {
-                                $("#erroresss").html(errores);
-                            }
-                        }
-                    </script>
-                    <div class="modal-footer" id="erroresss" style="text-align: left; color: red;">
-
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Send message</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <script>
+                    $('#exampleModal').on('show.bs.modal', function (event) {
+                        var button = $(event.relatedTarget) // Button that triggered the modal
+                        var recipient = button.data('whatever') // Extract info from data-* attributes
+                        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                        var modal = $(this)
+                        modal.find('.modal-title').text('New message to ' + recipient)
+                        modal.find('.modal-body input').val(recipient)
+                    })
+                </script>
+    </section>
+    <section>
+        <div class="Segunda">
+            <div class="Descripcion">
+                <h4>
+                    En DePrimera.com.ar tratamos de ofrecer al usuario un espacio para personas que les gusta jugar al futbol y tienen determinados problemas a la hora
+                    de organizar un partido, a modo de red social web.  Nosotros nos encargamos de resolver todos estos problemas con la mayor facilidad posible
+                    ofreciéndote la posibilidad de agregar tanto amigos como desconocidos a tu partido y otros beneficios.
+                    Lo que hace tan especial al proyecto es que te permite conocer e interactuar con personas que le gusta tanto el futbol como a vos.
+                </h4>
             </div>
         </div>
-    </div> <!-- Modal de Registro -->
-</div>
+    </section>
+    <section>
+        <div class="Tercera">
+            <img class="ImagenIzq" alt="CristianoRonaldo" src="~/Content/Images/EquipoB.png" />
+            <div class="TextoConBotonDer">
+                <h2>CON TUS AMIGOS</h2>
+                <p>
+                    Busca y agrega a tus amigos, calificalos, comentá y chatea con ellos.
+                    Socializa de manera segura y a traves del deporte gracias a nuestro sistema de puntuaciones y comentarios de usuario.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="Cuarta">
+            <img class="ImagenDer" style="opacity: 0;" src="~/Content/Images/EquipoIdeal.png" />
+            <div class="TextoConBotonIzq">
+                <h2 style="color: black;">ARMA PARTIDOS</h2>
+                <p style="color: black;">
+                    Organiza partidos con o sin amigos para jugar en cualquier cancha. Elegi la fecha, hora, cancha o entra en un partido ya armado con vacantes.
+                    Pensamos en la web como una forma de relacionarse con personas de manera segura y a traves de gustos, pedimos datos sobre todos los usuarios para estar garantizar
+                    tu seguridad durante tu experiencia.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="Quinta">
+            <img class="ImagenDer" src="~/Content/Images/EquipoIdeal.png" />
+            <div class="TextoConBotonIzq">
+                <h2>CON TUS EQUIPOS</h1>
+                <p>
+                Crea tu equipo ideal con jugadores a tu elección los cuales pueden ser tanto tus amigos como desconocidos o encontra tu equipo ideal basandote en la informacion
+                que proveemos de éste como la calificación, comentarios o integrantes. Utiliza tu equipo para poder comenzar desafíos y entrar en distintas competencias.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="Sexta">
+            <img class="ImagenIzq" src="~/Content/Images/Kane2.png" />
+            <div class="TextoConBotonDer">
+                <h2 style="color: black;">AFILIA TU CANCHA</h2>
+                <p style="color: black;">
+                    Si eres dueño de un establecimiento que ofrece canchas de futbol y no esta participando, no te quedes afuera y afilia tu cancha
+                    para recibir mas clientes.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="Septima">
+            <h3>REDES SOCIALES</h3>
+
+        </div>
+    </section>
+    <section>
+        <div class="Octava">
+
+        </div>
+    </section>
+</body>

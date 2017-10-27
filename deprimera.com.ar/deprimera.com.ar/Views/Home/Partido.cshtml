@@ -1,126 +1,22 @@
-﻿@*@using deprimera.com.ar.Models
-@model Todos
-
-<header>
-    <nav class="navbar-fixed-top" style="display: block; width: 100%; height:5%; color: black;">
-        <div class="container">
-            <div class="collapse navbar-collapse">
-                <a href="@Url.Action("IrAIndex", "Home", ViewBag.jugadorqueselogueo, null)">
-                    <span class="btn btn-default glyphicon glyphicon-home" style="float: left; margin-top: 11px;" />
-                </a> <!-- Boton para volver a logueado con el Glyphicon -->
-                <form method="POST" action="@Url.Action("BuscarTodo", "Home")" class="navbar-form navbar-left">
-                    <div class="form-group">
-                        @Html.TextBoxFor(x => x.id, new { @style = "display: none;", @Value = "" + ViewBag.jugadorqueselogueo.id })
-                        @Html.TextBoxFor(x => x.nombre, new { @class = "form-control", @Value = "" })
-                    </div>
-                    <button type="submit" class="btn btn-default" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-search"> </span></button>
-                </form> <!-- Formulario para buscar cualquiercosa -->
-                <ul class="nav navbar-nav navbar-right">
-                    <li style="display: inline-block; background-image: url(../../Content/BloqueNav.jpg); margin-left: 5px; margin-top: 10px; color: white;"><a href="#">Mensajes <span class="badge">42</span></a></li>
-                    <li><a href="#">Notificaciones <span class="badge">3</span></a></li>
-                    <li class="dropdown">
-                        <!-- Dropdown en la Navbar -->
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="glyphicon glyphicon-user"></span></a>
-                        <ul class="dropdown-menu">
-                            @{
-                                Todos miperfil = new Todos();
-                                miperfil.id = ViewBag.jugadorqueselogueo.id;
-                                miperfil.nombre = "#J" + ViewBag.jugadorqueselogueo.id;
-                            }
-                            <li><a href="@Url.Action("BuscarTodo", "Home", miperfil, null)">Editar Perfil</a></li> <!-- Ir a Mi perfil -->
-                            <li><a href="@Url.Action("EquiposJugador", "Home", ViewBag.jugadorqueselogueo, null)">Mis Equipos</a></li> <!-- Ir a Mis Equipos -->
-                            <li><a href="@Url.Action("Index", "Home")">Cerrar Cuenta</a></li> <!-- Cerrar Sesion -->
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav> <!-- Menu Principal -->
-</header>
-<main>
-    <form method="POST" action="@Url.Action("ArmarPartido", "Home")" style="width: 250px;">
-        @Html.TextBoxFor(x => x.id, new { @style = "display: none;", @Value = "" + ViewBag.jugadorqueselogueo.id })
-
-        <div id="txtFechaDelPartido">
-            Fecha: @Html.TextBoxFor(x => x.fecha, new { @class = "form-control", @type = "datetime-local", @Value = "" })
-        </div>
-
-        <div id="txtCantidadDeJugadoresDelPartido" style="display: none;">
-            Cantidad de Jugadores: @Html.TextBoxFor(x => x.cantjug, new { @class = "form-control", @Value = "" })
-        </div>
-
-        <div id="txtCanchaDelPartido" style="display: none;">
-            Cancha: @Html.DropDownListFor(x => x.canchas, new SelectList(ViewBag.Combobox), new { @class = "form-control", @Value = "" })
-        </div>
-
-        <br />
-        <input type="button" value="Armar Partido" onclick="CrearPartido()" id="BotonIniciarPrimerScript" class="btn btn-primary" />
-
-        <input type="button" value="Segundo Paso" onclick="CrearPartido2()" id="BotonIniciarSegundoScript" style="display:none;" class="btn btn-primary" />
-
-        <input type="submit" value="Ultimo Paso" id="BotonFinal2" style="display:none;" class="btn btn-primary" />
-
-        <script>
-                    function CrearPartido()
-                    {
-                        document.getElementById("txtFechaDelPartido").style.display = "none";
-                        document.getElementById("txtCantidadDeJugadoresDelPartido").style.display = "block";
-                        document.getElementById("BotonIniciarPrimerScript").style.display = "none";
-                        document.getElementById("BotonIniciarSegundoScript").style.display = "block";
-                    }
-                    function CrearPartido2() {
-                        document.getElementById("txtCantidadDeJugadoresDelPartido").style.display = "none";
-                        document.getElementById("txtCanchaDelPartido").style.display = "block";
-                        document.getElementById("BotonIniciarSegundoScript").style.display = "none";
-                        document.getElementById("BotonFinal2").style.display = "block";
-                    }
-        </script>
-    </form> <!-- Formulario de creacion de Partido -->
-    <form method="POST" action="@Url.Action("ArmarEquipo", "Home")">
-
-        @Html.TextBoxFor(x => x.id, new { @style = "display: none;", @Value = "" + ViewBag.jugadorqueselogueo.id })<br />
-
-        <div id="txtNombreDelEquipo">
-            Nombre del Equipo: @Html.TextBoxFor(x => x.nombre, new { @class = "form-control", @Value = "" })
-        </div>
-
-        <div id="txtCantidadDeJugadoresDelEquipo" style="display: none;">
-            Cantidad de Jugadores: @Html.TextBoxFor(x => x.cantjug, new { @class = "form-control", @Value = "" })
-        </div>
-
-        <br />
-        <input type="button" value="Armar Equipo" onclick="ScriptArmarEquipo()" class="btn btn-primary" id="BotonIniciarScript" />
-
-        <input type="submit" value="Ultimo Paso" class="btn btn-primary" id="BotonFinal" style="display: none;" />
-
-        <script>
-            function ScriptArmarEquipo() {
-                document.getElementById("txtNombreDelEquipo").style.display = "none";
-                document.getElementById("txtCantidadDeJugadoresDelEquipo").style.display = "block";
-                document.getElementById("BotonIniciarScript").style.display = "none";
-                document.getElementById("BotonFinal").style.display = "block";
-            }
-        </script>
-        <br />
-    </form> <!-- Formulario de creacion de Equipo -->
-</main>*@
-@{
-    Layout = null;
-}
 <head>
-    <link href="~/Content/Estilos2.css" rel="stylesheet" type="text/css" />
-    <img id="full-screen-background-image" src="~/Content/Fondo.jpg" />
+    <link href="~/Content/Partido.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Personal.css" rel="stylesheet" type="text/css" />
+    <img id="full-screen-background-image" src="~/Content/Images/Fondo.jpg" />
 </head>
 <body>
     <header>
         <section>
-            <div class="MenuPersonal">
-                <div class="Barra">
-                    <a class="A NombreUsuario">NOMBRE DE USUARIO</a>
-                    <img class="Iconos" src="~/Content/perfil.png" style="height: 40px; width: 40px; image-align: center; float: center;" />
-                    <img class="Iconos" src="~/Content/notificaciones.png" style="height: 40px; width: 40px; image-align: center; float: center;" />
+            <div class="TOP">
+                <a href="@Url.Action("IrAIndex", "Home", ViewBag.jugadorqueselogueo, null)"> <img class="Logo" src="~/Content/Images/Logo.png" /></a>
+                <div class="MenuPersonal">
+                    <div class="Barra">
+                        <a class="A NombreUsuario">NOMBRE DE USUARIO</a>
+                        <a href=""><img class="Iconos" src="~/Content/Images/Perfil.png" style="height: 40px; width: 30px;" /></a>
+                        <a href=""><img class="Iconos" src="~/Content/Images/Notificaciones.png" style="height: 40px; width: 40px;" /></a>
+                        <a href=""><img class="Iconos" src="~/Content/Images/salir.png" style="height: 40px; width: 40px;" /></a>
+                    </div>
+                    <div class="Triangulo"></div>
                 </div>
-                <div class="Triangulo"></div>
             </div>
         </section>
         <section>
@@ -128,8 +24,8 @@
                 <ul>
                     <li><a class="A" href="@Url.Action("IrAIndex", "Home", ViewBag.jugadorqueselogueo, null)">INICIO</a></li>
                     <li><a class="A" href="@Url.Action("IrAPartido", "Home", ViewBag.jugadorqueselogueo, null)">PARTIDO</a></li>
-                    <li><a class="A" href="#">EQUIPO</a></li>
-                    <li><a class="A" href="#">BUSCAR</a></li>
+                    <li><a class="A" href="@Url.Action("IrAEquipo", "Home", ViewBag.jugadorqueselogueo, null)">EQUIPO</a></li>
+                    <li><a class="A" href="@Url.Action("IrABuscar", "Home", ViewBag.jugadorqueselogueo, null)">BUSCAR</a></li>
                     <li><a class="A" href="#">CHAT</a></li>
                 </ul>
             </div>
@@ -139,44 +35,44 @@
     <main>
         <section>
             <div class="PrimeraMitad">
-                <a href="#" id="B" class="Bloque">
+                <a href="~/Content/#" id="B" class="Bloque">
                     <div class="TituloYDecripcion">
                         <h1 id="C"> SOLO </h1>
                         <p id="D"> Arma un partido solo con todas personas desconocidas. </p>
                     </div>
-                    <img src="~/Content/CristianoRonaldo.png" class="Imagen1" />
+                    <img src="~/Content/Images/CristianoRonaldo.png" class="Imagen1" />
                 </a>
                 <div class="Derecha">
-                    <a href="#" class="Rectangulo">
+                    <a href="~/Content/#" class="Rectangulo">
                         <div class="Titulo">
                             <h1>PARTIDOS CON VACANTES<h1 />
                         </div>
-                        <img src="~/Content/Puyol.png" class="Imagen2" />
+                        <img src="~/Content/Images/Puyol.png" class="Imagen2" />
                     </a>
-                    <a href="#" class="Rectangulo" style="margin-top: 20px;">
+                    <a href="~/Content/#" class="Rectangulo" style="margin-top: 20px;">
                         <div class="Titulo">
                             <h1>MIS PARTIDOS<h1 />
                         </div>
-                        <img src="~/Content/Rooney.png" class="Imagen2" />
+                        <img src="~/Content/Images/Rooney.png" class="Imagen2" />
                     </a>
                 </div>
             </div>
         </section>
         <section>
             <div class="PrimeraMitad">
-                <a href="#" id="B" class="Bloque">
+                <a href="~/Content/#" id="B" class="Bloque">
                     <div class="TituloYDecripcion">
                         <h1 id="C"> FALTA GENTE </h1>
                         <p id="D"> Completa las vacantes de los partidos con desconocidos. </p>
                     </div>
-                    <img src="~/Content/equipo.png" class="Imagen1" />
+                    <img src="~/Content/Images/equipo.png" class="Imagen1" />
                 </a>
-                <a href="#" id="B" class="Bloque" style="margin-left: 20px;">
+                <a href="~/Content/#" id="B" class="Bloque" style="margin-left: 20px;">
                     <div class="TituloYDecripcion2">
                         <h1 id="C"> FALTA LA RESERVA </h1>
                         <p id="D"> Ya ocupaste todos los puestos, reserva. </p>
                     </div>
-                    <img src="~/Content/Kane.png" class="Imagen3" />
+                    <img src="~/Content/Images/Kane.png" class="Imagen3" />
                 </a>
             </div>
         </section>

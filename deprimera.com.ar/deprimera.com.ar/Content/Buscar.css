@@ -1,0 +1,75 @@
+@font-face {
+font-family: DINPro-Cond;
+src:url(/Content/fonts/DINPro-Cond.otf);
+}
+
+@font-face 
+{
+font-family: Reitam;
+src:url(/Content/fonts/Reitam.otf);
+}
+
+@font-face {
+font-family: EA;
+src:url(/Content/fonts/EALogo.otf);
+}
+
+@font-face {
+font-family: OpenSans-Regular;
+src:url(/Content/fonts/OpenSans-Regular.otf);
+}
+main{
+    height: 750px;
+}
+.Arriba {
+    width: 100%;
+    height: 30%;
+    display: block;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+.Abajo {
+    width: 100%;
+    height: 30%;
+    display: block;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+.Rectangulo {
+    float: left;
+    margin-left: 10px;
+    width: 45%;
+    height: 100%;
+    background-color: #262726;
+    opacity: 0.92;
+    color: #D6DDDC;
+}
+.Rectangulo:hover {
+    background-color: #FFE200;
+    color: black;
+    opacity: 1;
+}
+.Messi {
+	width: 30%;
+	height: 100%;
+	float: left;
+	margin-left: 10px;
+}
+h2 {
+	float: left;
+	font-family: Reitam;
+	margin-top: 50px;
+	font-size: 35px;
+	margin-left: 20px;
+}
+.Robben {
+	width: 50%;
+	height: 100%;
+	float: left;
+}
+.Martial {
+	width: 25%;
+	height: 100%;
+	float: left;
+	margin-left: 30px;
+}

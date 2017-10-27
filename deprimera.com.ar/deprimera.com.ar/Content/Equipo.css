@@ -1,0 +1,125 @@
+@font-face {
+font-family: DINPro-Cond;
+src:url(/Content/fonts/DINPro-Cond.otf);
+}
+
+@font-face 
+{
+font-family: Reitam;
+src:url(/Content/fonts/Reitam.otf);
+}
+
+@font-face {
+font-family: EA;
+src:url(/Content/fonts/EALogo.otf);
+}
+
+@font-face {
+font-family: OpenSans-Regular;
+src:url(/Content/fonts/OpenSans-Regular.otf);
+}
+main {
+    height: 700px;
+    width: 100%;
+}
+section {
+    height: 80%;
+    width: 50%;
+    float: left;
+}
+.Crear {
+    height: 80%;
+    width: 90%;
+    color: #D6DDDC;
+    margin-left: 80px;
+    background-color: #262726;
+    opacity: 0.92;
+    color: #D6DDDC;
+}
+.Crear:hover {
+    background-color: #FFE200;
+    opacity: 1;
+    color: black;
+}
+
+.Texto {
+    margin-top: 20px;
+    float: left;
+    width: 50%;
+    margin-left: 20px;
+}
+
+img {
+    float: right
+}
+
+.Messi {
+    height: 100%;
+    width: 45%;
+}
+
+.Mis {
+    height: 38%;
+    width: 80%;
+    display: block;
+    color: #D6DDDC;
+    margin-left: 30px;
+    background-color: #262726;
+    opacity: 0.92;
+    color: #D6DDDC;
+}
+
+.Mis:hover {
+    background-color: #FFE200;
+    opacity: 1;
+    color: black;
+}
+
+.ConVacantes {
+    margin-top: 20px;
+    height: 38%;
+    width: 80%;
+    display: block;
+    color: #D6DDDC;
+    margin-left: 30px;
+    background-color: #262726;
+    opacity: 0.92;
+    color: #D6DDDC;
+}
+
+.ConVacantes:hover {
+    background-color: #FFE200;
+    opacity: 1;
+    color: black;
+}
+
+h2 {
+    font-family: Reitam;
+    text-align: left;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+p {
+    font-family: Reitam;
+    text-align: left;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.TITULO {
+    margin-top: 20px;
+    float: left;
+    margin-left: 20px;
+    width: 40%;
+}
+
+.Ibrahimovic {
+    width: 50%;
+    height: 100%;
+}
+
+.Cech {
+    width: 50%;
+    height: 100%;
+}

@@ -1,0 +1,93 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+#full-screen-background-image {
+    z-index: -999;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-attachment: fixed
+}
+.TOP {
+    width: 100%;
+    height: 150px;
+}
+.Logo {
+    margin-right: 30px;
+    margin-left: 40px;
+    float: left;
+    width: 350px;
+    height: 150px;
+    display: inline-block;
+}
+.MenuPersonal {
+    height: 50px;
+    margin-top: 30px;
+    margin-right: 80px;
+    float: right;
+    display: inline-block;
+}
+.Triangulo {
+    float: right;
+    width: 0;
+    height: 0;
+    border-right: 25.5px solid #545454;
+    border-top: 25.5px solid transparent;
+    border-left: 24px solid transparent;
+    border-bottom: 24px solid #545454;
+    opacity: 0.9;
+}
+.Barra {
+    float: right;
+    background-color: #545454;
+    width: auto;
+    opacity: 0.9;
+    height: 50px;
+}
+.NombreUsuario {
+    font-family: Reitam;
+    text-align: center;
+    text-decoration: none;
+    color: #D6DDDC;
+    float: left;
+    margin-right: 10px;
+    margin-top: 13px;
+}
+.Iconos {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.MenuPrincipal {
+    margin-top: 10px;
+    display: block;
+}
+ul {
+    background-color: #545454;
+    font-family: Reitam;
+    opacity: 0.9;
+    width: 766px;
+    display: block;
+}
+li {
+    display: inline-block;
+    width: 150px;
+    text-align: center;
+}
+a {
+    font-size: 18px;
+    text-align: center;
+    color: #D6DDDC;
+    text-decoration: none;
+    line-height: 30px;
+}
+li:hover {
+    color: #FFE200;
+    background-color: #262726;
+    border-bottom: 3px solid #FFE200;
+    height: 27px;
+}

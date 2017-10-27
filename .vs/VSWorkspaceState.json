@@ -1,9 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\deprimera.com.ar",
     "\\deprimera.com.ar\\deprimera.com.ar",
     "\\deprimera.com.ar\\deprimera.com.ar\\Content",
-    "\\deprimera.com.ar\\deprimera.com.ar\\Controllers"
+    "\\deprimera.com.ar\\deprimera.com.ar\\Controllers",
+    "\\deprimera.com.ar\\deprimera.com.ar\\Views",
+    "\\deprimera.com.ar\\deprimera.com.ar\\Views\\Home"
   ],
+  "SelectedNode": "\\deprimera.com.ar\\deprimera.com.ar\\deprimera.com.ar.csproj",
   "PreviewInSolutionExplorer": false
 }
