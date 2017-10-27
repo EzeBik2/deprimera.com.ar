@@ -27,15 +27,12 @@ src:url(fonts/OpenSans-Regular.otf);
     left: 0;
 	background-attachment: fixed
 }
-
-section{
-	display: block;
-}
-.ARRIBA {
+.Arriba {
 	height: 400px;
-	margin-left: 290px;
 	margin-top: 30px;
 	display: block;
+    width: 100%;
+    margin-left: 245px;
 }
 .Equipo {
 	width: 270px;
@@ -56,6 +53,7 @@ section{
 .BARRA {
 	margin-left: 80px;
 	display: block;
+    width: 100%;
 }
 .Abajo {
 	height: 100px;
