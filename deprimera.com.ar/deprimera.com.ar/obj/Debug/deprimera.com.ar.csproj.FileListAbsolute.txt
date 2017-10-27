@@ -143,6 +143,5 @@ C:\Users\42498978\Source\Repos\deprimera.com.ar\deprimera.com.ar\deprimera.com.a
 C:\Users\42498978\Source\Repos\deprimera.com.ar\deprimera.com.ar\deprimera.com.ar\bin\es\System.Web.WebPages.resources.dll
 C:\Users\42498978\Source\Repos\deprimera.com.ar\deprimera.com.ar\deprimera.com.ar\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\42498978\Source\Repos\deprimera.com.ar\deprimera.com.ar\deprimera.com.ar\bin\es\System.Web.WebPages.Razor.resources.dll
-C:\Users\42498978\Source\Repos\deprimera.com.ar\deprimera.com.ar\deprimera.com.ar\obj\Debug\deprimera.com.ar.csprojResolveAssemblyReference.cache
 C:\Users\42498978\Source\Repos\deprimera.com.ar\deprimera.com.ar\deprimera.com.ar\obj\Debug\deprimera.com.ar.dll
 C:\Users\42498978\Source\Repos\deprimera.com.ar\deprimera.com.ar\deprimera.com.ar\obj\Debug\deprimera.com.ar.pdb

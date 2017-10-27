@@ -178,14 +178,52 @@
     <Content Include="Content\PerfilPartido.css" />
     <Content Include="Content\Personal.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\borrar.png" />
+    <Content Include="Images\Camiseta.png" />
+    <Content Include="Images\Capitan.png" />
+    <Content Include="Images\Cech.png" />
+    <Content Include="Images\CristianoRonaldo.png" />
+    <Content Include="Images\direccion.png" />
+    <Content Include="Images\dybala.png" />
+    <Content Include="Images\entrar.gif" />
+    <Content Include="Images\entrar.png" />
+    <Content Include="Images\equipo.png" />
+    <Content Include="Images\EquipoB.png" />
+    <Content Include="Images\EquipoIdeal.png" />
+    <Content Include="Images\Fondo.jpg" />
+    <Content Include="Images\Fondo2.jpg" />
+    <Content Include="Images\Fondo3.jpg" />
+    <Content Include="Images\Guardiola.png" />
+    <Content Include="Images\Ibrahimovic.png" />
+    <Content Include="Images\Kane.png" />
+    <Content Include="Images\Kane2.png" />
+    <Content Include="Images\Logo.png" />
+    <Content Include="Images\Martial.png" />
+    <Content Include="Images\messi.png" />
+    <Content Include="Images\Messi2.png" />
+    <Content Include="Images\notificaciones.png" />
+    <Content Include="Images\opciones.png" />
+    <Content Include="Images\pelota.png" />
+    <Content Include="Images\perfil.png" />
+    <Content Include="Images\pogba.png" />
+    <Content Include="Images\Puyol.png" />
+    <Content Include="Images\Ribery.png" />
+    <Content Include="Images\Robben.png" />
+    <Content Include="Images\Rooney.png" />
+    <Content Include="Images\salir.png" />
+    <Content Include="Images\volver.png" />
+    <Content Include="Images\Zidane.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="fonts\DINPro-Cond.otf" />
+    <Content Include="fonts\EALogo.ttf" />
+    <Content Include="fonts\OpenSans-Regular.ttf" />
+    <Content Include="fonts\Reitam.otf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -221,15 +259,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
