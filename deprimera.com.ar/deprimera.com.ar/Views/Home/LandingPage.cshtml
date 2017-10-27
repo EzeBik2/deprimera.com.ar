@@ -13,26 +13,35 @@
         </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
+                        <div class="modal-content" style="width: 800px;">
                             <div class="modal-header">
                                 <h2 class="modal-title" id="exampleModalLabel" style="text-align: center; font-size: 30px;">INGRESE</h2>
                             </div>
                             <div class="modal-body">
-                                <div class="Izq">
-                                    <form method="POST" action="@Url.Action("CrearEquipo", "Home")">
-                                        <h2>CREAR EQUIPO</h2>
-                                        @Html.TextBoxFor(x => x.id, new { @style = "display: none;", @Value = "" + ViewBag.JugadorLogueado.id })<br />
-                                        <div id="txtNombreDelEquipo">
-                                            Nombre del Equipo: @Html.TextBoxFor(x => x.nombre, new { @class = "form-control", @Value = "" })
-                                        </div>
-                                        <div id="txtCantidadDeJugadoresDelEquipo" style="display: none;">
-                                            Cantidad de Jugadores: @Html.TextBoxFor(x => x.cantjug, new { @class = "form-control", @Value = "" })
-                                        </div>
-                                        <input type="submit" value="Ultimo Paso" class="btn btn-primary" id="BotonFinal" style="display: none;" />
+                                <div class="Izq" style="width: 45%; float:left;">
+                                    <form method="POST" action="@Url.Action("REGISTRARSE", "Home")">
+                                        <h2>REGISTRATE</h2>
+                                        Nombre: @Html.TextBoxFor(x => x.Nombre, new { @style = "float: right;"})<br /><br />
+                                        Apellido: @Html.TextBoxFor(x => x.Apellido, new { @style = "float: right;" })<br /><br />
+                                        Email: @Html.TextBoxFor(x => x.Email, new { @style = "float: right;" })<br /><br />
+                                        Foto: @Html.TextBoxFor(x => x.Foto, new { @style = "float: right;" })<br /><br />
+                                        Edad: @Html.TextBoxFor(x => x.Edad, new { @style = "float: right;" })<br /><br />
+                                        DNI: @Html.TextBoxFor(x => x.DNI, new { @style = "float: right;" })<br /><br />
+                                        Telefono: @Html.TextBoxFor(x => x.Telefono, new { @style = "float: right;" })<br /><br />
+                                        Calificacion: @Html.TextBoxFor(x => x.Calificacion, new { @style = "float: right;" })<br /><br />
+                                        CantidadDeVotos: @Html.TextBoxFor(x => x.CantidadDeVotos, new { @style = "float: right;" })<br /><br />
+                                        Contraseña: @Html.PasswordFor(x => x.Contraseña, new { @style = "float: right;" })<br /><br />
+                                        ConfirmarContraseña: @Html.PasswordFor(x => x.ConfirmarContraseña, new { @style = "float: right;" })<br /><br />
+                                        <input type="submit" />
                                     </form>
                                 </div>
-                                <div class="Der">
-
+                                <div class="Der" style="width: 45%; float:left; margin-left: 50px;">
+                                    <form method="POST" action="@Url.Action("INGRESAR", "Home")">
+                                        <h2>INGRESA</h2>
+                                        Email: @Html.TextBoxFor(x => x.Email, new { @style = "float: right;" })<br /><br />
+                                        Contraseña: @Html.PasswordFor(x => x.Contraseña, new { @style = "float: right;" })<br /><br />
+                                        <input type="submit" />
+                                    </form>
                                 </div>
                             </div>
                             <div class="modal-footer">

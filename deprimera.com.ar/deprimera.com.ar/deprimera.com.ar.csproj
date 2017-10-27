@@ -142,6 +142,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PartidoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -174,6 +175,7 @@
     <Content Include="Content\Index2.css" />
     <Content Include="Content\Landing.css" />
     <Content Include="Content\Partido.css" />
+    <Content Include="Content\PerfilPartido.css" />
     <Content Include="Content\Personal.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -215,6 +217,7 @@
     <Content Include="Views\Home\Partido.cshtml" />
     <Content Include="Views\Home\Buscar.cshtml" />
     <Content Include="Views\Home\Equipo.cshtml" />
+    <Content Include="Views\Partido\PerfilPartido.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

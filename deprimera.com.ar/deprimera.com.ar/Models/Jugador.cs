@@ -8,38 +8,17 @@ namespace deprimera.com.ar.Models
 {
     public class Jugador
     {
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public string email { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public string contraseña { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public int id { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public string nombre { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public string apellido { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public string foto { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public int edad { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public int telefono { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public int calificacion { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public int cantidaddevotos { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public string Confcontraseña { get; set; }
+        public int ID { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string Foto { get; set; }
+        public string Email { get; set; }
+        public int Edad { get; set; }
+        public int DNI { get; set; }
+        public int Telefono { get; set; }
+        public int Calificacion { get; set; }
+        public int CantidadDeVotos { get; set; }
+        public string Contraseña { get; set; }
+        public string ConfirmarContraseña { get; set; }
     }
 }
