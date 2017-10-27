@@ -19,7 +19,7 @@
 }
 
 .Primera {
-    background-image: url('/Content/Images/Fondo3.jpg');
+    background-image: url('/Images/Fondo3.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
     width: 100%;
@@ -52,7 +52,7 @@ h4 {
 }
 
 .Cuarta {
-    background-image: url('/Content/Images/Fondo2.jpg');
+    background-image: url('/Images/Fondo2.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
     width: 100%;
