@@ -5,22 +5,22 @@
 
 @font-face {
     font-family: Reitam;
-    src: url('/fonts/Reitam.otf');
+    src: url(/fonts/Reitam.otf);
 }
 
 @font-face {
-    font-family: DINPro-Cond;
-    src: url('/fonts/DINPro-Cond.otf');
+    font-family: DINPro-Con;
+    src: url(/fonts/DINPro-Cond.otf);
 }
 
 @font-face {
     font-family: EA;
-    src: url('/fonts/EALogo.ttf');
+    src: url(/fonts/EALogo.ttf);
 }
 
 @font-face {
     font-family: OpenSans-Regular;
-    src: url('/fonts/OpenSans-Regular.ttf');
+    src: url(/fonts/OpenSans-Regular.ttf);
 }
 
 .Primera {
@@ -45,7 +45,7 @@
 
 h4 {
     margin-left: 20%;
-    font-family: DINPro-Cond;
+    font-family: DINPro-Con;
     font-size: 30px;
     color: #000000;
 }
@@ -108,7 +108,7 @@ h2 p button {
 }
 
 h2 {
-    font-family: DINPro-Cond;
+    font-family: DINPro-Con;
     font-size: 48px;
     color: #E8D27B;
     margin-top: 50px;
