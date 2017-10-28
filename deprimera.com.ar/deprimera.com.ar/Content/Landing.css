@@ -4,6 +4,11 @@
 }
 
 @font-face {
+    font-family: Reitam;
+    src: url('/fonts/Reitam.otf');
+}
+
+@font-face {
     font-family: DINPro-Cond;
     src: url('/fonts/DINPro-Cond.otf');
 }
