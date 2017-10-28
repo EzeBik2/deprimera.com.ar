@@ -8,20 +8,11 @@ namespace deprimera.com.ar.Models
 {
     public class Cancha
     {
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public int id { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public string nombre { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public string barrio { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public string calle { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public int telefono { get; set; }
+        public int ID { get; set; }
+        public string Nombre { get; set; }
+        public string Barrio { get; set; }
+        public string Calle1 { get; set; }
+        public string Calle2 { get; set; }
+        public int Telefono { get; set; }
     }
 }

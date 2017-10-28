@@ -1,5 +1,4 @@
 ﻿@using deprimera.com.ar.Models
-@model Jugador
 
 <head>
     <meta charset="utf-8">
@@ -129,7 +128,15 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                ...
+                                <form method="POST" action="@Url.Action("AFILIARCANCHA", "Home")">
+                                    <h2>AFILIA TU CANCHA</h2>
+                                    @*Nombre del Establecimiento: @Html.TextBoxFor(x => x.Nombre, new { @style = "float: right;" })<br /><br />
+                                    Barrio: @Html.TextBoxFor(x => x.Barrio, new { @style = "float: right;" })<br /><br />
+                                    Calle1: @Html.TextBoxFor(x => x.Calle1, new { @style = "float: right;" })<br /><br />                                    
+                                    Calle2: @Html.TextBoxFor(x => x.Calle2, new { @style = "float: right;" })<br /><br />
+                                    Telefono: @Html.TextBoxFor(x => x.Telefono, new { @style = "float: right;" })<br /><br />
+                                    <input type="submit" />*@
+                                </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
