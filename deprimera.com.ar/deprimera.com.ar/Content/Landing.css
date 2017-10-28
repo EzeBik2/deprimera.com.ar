@@ -5,13 +5,13 @@
 
 @font-face {
     font-family: Reitam;
-    src: url(/fonts/Reitam.otf) format("opentype");
+    src: url(/fonts/Reitam.ttf);
     ;
 }
 
 @font-face {
     font-family: DINPro-Con;
-    src: url(/fonts/DINPro-Cond.otf) format("opentype");
+    src: url(/fonts/DINPro-CondensedBold.ttf);
 }
 
 @font-face {

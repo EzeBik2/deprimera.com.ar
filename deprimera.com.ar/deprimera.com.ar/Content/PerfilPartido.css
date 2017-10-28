@@ -5,17 +5,17 @@
 
 @font-face {
 font-family: DINPro-Cond;
-src:url(fonts/DINPro-Cond.otf);
+src:url(fonts/DINPro-CondensedBold.ttf);
 }
 
 @font-face {
 font-family: EA;
-src:url(fonts/EA Logo.otf);
+src:url(fonts/EA Logo.ttf);
 }
 
 @font-face {
 font-family: OpenSans-Regular;
-src:url(fonts/OpenSans-Regular.otf);
+src:url(fonts/OpenSans-Regular.ttf);
 }
 
 #full-screen-background-image {
