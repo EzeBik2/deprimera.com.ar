@@ -220,10 +220,10 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\DINPro-Cond.otf" />
     <Content Include="fonts\EALogo.ttf" />
     <Content Include="fonts\OpenSans-Regular.ttf" />
-    <Content Include="fonts\Reitam.otf" />
+    <Content Include="fonts\DINPro-CondensedBold.ttf" />
+    <Content Include="fonts\Reitam.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
