@@ -13,23 +13,27 @@ namespace deprimera.com.ar.Controllers
         {
             return View();
         }
-        public ActionResult IrAIndex(Jugador jugadorqueseestalogueando)
+        public ActionResult VieneDeLanding(Landing Objeto)
+        {
+
+        }
+        public ActionResult IrAIndex(Landing jugadorqueseestalogueando)
         {
             //ViewBag.Combobox = Canchas.TraerNombresDeTodasLasCanchas(); //Trae la lista de todas las canchas que existen
 
             //Traer Listas
-            ViewBag.jugadorqueselogueo = jugadorqueseestalogueando;
+            ViewBag.jugadorqueselogueo = jugadorqueseestalogueando.unJugador;
             return View("Index"); //Si fallo el programa que vuelva a inicio.
         }
-        public ActionResult IrAPartido(Jugador jugadorqueseestalogueando)
+        public ActionResult IrAPartido(Landing jugadorqueseestalogueando)
         {
             //ViewBag.Combobox = Canchas.TraerNombresDeTodasLasCanchas(); //Trae la lista de todas las canchas que existen
 
             //Traer Listas
-            ViewBag.jugadorqueselogueo = jugadorqueseestalogueando;
+            ViewBag.jugadorqueselogueo = jugadorqueseestalogueando.unJugador;
             return View("Partido"); //Si fallo el programa que vuelva a inicio.
         }
-        public ActionResult IrAEquipo(Jugador jugadorqueseestalogueando)
+        public ActionResult IrAEquipo(Landing jugadorqueseestalogueando)
         {
             //ViewBag.Combobox = Canchas.TraerNombresDeTodasLasCanchas(); //Trae la lista de todas las canchas que existen
 
