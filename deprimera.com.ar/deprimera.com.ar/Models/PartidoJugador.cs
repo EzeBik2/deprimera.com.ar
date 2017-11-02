@@ -13,5 +13,6 @@ namespace deprimera.com.ar.Models
         public string Rol { get; set; }
         public int IdPartido { get; set; }
         public int IdJugador { get; set; }
+        public string NombreJugador { get; set; }
     }
 }

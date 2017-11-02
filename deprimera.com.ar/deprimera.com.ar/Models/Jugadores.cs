@@ -2,208 +2,115 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data.OleDb;
-//using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 
 namespace deprimera.com.ar.Models
 {
     public class Jugadores
     {
-        //static string querystr;
-
-        static string ProveedorAccess;
-        static OleDbConnection connAccess = new OleDbConnection();
-
-        //static string ProveedorMySQL;
-        //static MySqlCommand cmdMySQL;
-        //static MySqlConnection connMySQL = new MySqlConnection();
+        static string querystr;
+        static string ProveedorMySQL;
+        static MySqlCommand cmdMySQL;
+        static MySqlConnection connMySQL = new MySqlConnection();
 
         private static void ConectarDB()
-        {
-            ProveedorAccess = @"Provider=Microsoft.ACE.OLEDB.12.0;
-            Data Source=|DataDirectory|\BasededatosAccess.accdb";
-
-            connAccess.ConnectionString = ProveedorAccess;
-            connAccess.Open();
-
-            //connMySQL.ConnectionString = @"Data Source=localhost; Database=DBRSF; User ID=root; Password='root'";
-            //connMySQL.Open();
+        {        
+            connMySQL.ConnectionString = @"Database=localdb;Data Source=127.0.0.1:49164;User Id=azure;Password=6#vWHD_$";
+            connMySQL.Open();
         }
-        public static Jugador TraerUnJugador(Jugador unJugador)
+        public static Jugador TraerUnJugadorPorEmailClave(Jugador unJugador)
         {
             Jugador unJugador2 = new Jugador();
 
             try
             {
-                ConectarDB();
+                ConectarDB();                
+                querystr = "SELECT * FROM Jugadores";
+                cmdMySQL = new MySqlCommand(querystr, connMySQL);
+                MySqlDataReader drMySQL = cmdMySQL.ExecuteReader();
 
-                //try Probamos MYSQL
-                //{
-                //querystr = "SELECT * FROM Jugadores";
-                //cmdMySQL = new MySqlCommand(querystr, connMySQL);
-                //MySqlDataReader drMySQL = cmdMySQL.ExecuteReader();
-
-                //while (drMySQL.Read())
-                //{
-                //    if (drMySQL["email"].ToString() == unJugador.email && drMySQL["clave"].ToString() == unJugador.contraseña)
-                //    {
-                //        unJugador.id = Convert.ToInt32(drMySQL["id"].ToString());
-                //        unJugador.nombre = drMySQL["nombre"].ToString();
-                //        unJugador.apellido = drMySQL["apellido"].ToString();
-                //        unJugador.foto = drMySQL["foto"].ToString();
-                //        unJugador.edad = Convert.ToInt32(drMySQL["edad"].ToString());
-                //        unJugador.telefono = Convert.ToInt32(drMySQL["telefono"].ToString());
-                //        unJugador.calificacion = Convert.ToInt32(drMySQL["calificacion"].ToString());
-                //        unJugador.cantidaddevotos = Convert.ToInt32(drMySQL["cantidaddeVotos"].ToString());
-                //        unJugador.email = drMySQL["email"].ToString();
-                //        unJugador.contraseña = drMySQL["clave"].ToString();
-                //        connMySQL.Close();
-                //    }
-                //    if (Convert.ToInt32(drMySQL["id"].ToString()) == unJugador.id)
-                //    {
-                //        unJugador.id = Convert.ToInt32(drMySQL["id"].ToString());
-                //        unJugador.nombre = drMySQL["nombre"].ToString();
-                //        unJugador.apellido = drMySQL["apellido"].ToString();
-                //        unJugador.foto = drMySQL["foto"].ToString();
-                //        unJugador.edad = Convert.ToInt32(drMySQL["edad"].ToString());
-                //        unJugador.telefono = Convert.ToInt32(drMySQL["telefono"].ToString());
-                //        unJugador.calificacion = Convert.ToInt32(drMySQL["calificacion"].ToString());
-                //        unJugador.cantidaddevotos = Convert.ToInt32(drMySQL["cantidaddeVotos"].ToString());
-                //        unJugador.email = drMySQL["email"].ToString();
-                //        unJugador.contraseña = drMySQL["clave"].ToString();
-                //        connMySQL.Close();
-                //    }
-                //}
-                //}
-                //catch (Exception ErrorMySQL)
-                //{
-                //unJugador2.Confcontraseña = ErrorMySQL.ToString();
-                //connMySQL.Close();
-                //}
-
-                try
+                while (drMySQL.Read())
                 {
-                    OleDbCommand Consulta = connAccess.CreateCommand();
-                    Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-                    Consulta.CommandText = "TraerJugadores";
-                    OleDbDataReader drAccess = Consulta.ExecuteReader();
-
-                    while (drAccess.Read())
+                    if (drMySQL["email"].ToString() == unJugador.Email && drMySQL["clave"].ToString() == unJugador.Contraseña)
                     {
-                        if (drAccess["Email"].ToString() == unJugador.Email && drAccess["Contraseña"].ToString() == unJugador.Contraseña)
-                        {
-                            unJugador2.ID = Convert.ToInt32(drAccess["Id"].ToString());
-                            unJugador2.Nombre = drAccess["Nombre"].ToString();
-                            unJugador2.Apellido = drAccess["Apellido"].ToString();
-                            unJugador2.Foto = drAccess["Foto"].ToString();
-                            unJugador2.Edad = Convert.ToInt32(drAccess["Edad"].ToString());
-                            unJugador2.Telefono = Convert.ToInt32(drAccess["Telefono"].ToString());
-                            unJugador2.Calificacion = Convert.ToInt32(drAccess["Calificacion"].ToString());
-                            unJugador2.CantidadDeVotos = Convert.ToInt32(drAccess["CantidaddeVotos"].ToString());
-                            unJugador2.Email = drAccess["Email"].ToString();
-                            unJugador2.Contraseña = drAccess["Contraseña"].ToString();
-                            connAccess.Close();
-                        }
-                        if (Convert.ToInt32(drAccess["id"].ToString()) == unJugador.ID)
-                        {
-                            unJugador2.ID = Convert.ToInt32(drAccess["Id"].ToString());
-                            unJugador2.Nombre = drAccess["Nombre"].ToString();
-                            unJugador2.Apellido = drAccess["Apellido"].ToString();
-                            unJugador2.Foto = drAccess["Foto"].ToString();
-                            unJugador2.Edad = Convert.ToInt32(drAccess["Edad"].ToString());
-                            unJugador2.Telefono = Convert.ToInt32(drAccess["Telefono"].ToString());
-                            unJugador2.Calificacion = Convert.ToInt32(drAccess["Calificacion"].ToString());
-                            unJugador2.CantidadDeVotos = Convert.ToInt32(drAccess["CantidaddeVotos"].ToString());
-                            unJugador2.Email = drAccess["Email"].ToString();
-                            unJugador2.Contraseña = drAccess["Contraseña"].ToString();
-                            connAccess.Close();
-                        }
+                        unJugador.ID = Convert.ToInt32(drMySQL["id"].ToString());
+                        unJugador.Nombre = drMySQL["nombre"].ToString();
+                        unJugador.Apellido = drMySQL["apellido"].ToString();
+                        unJugador.Foto = drMySQL["foto"].ToString();
+                        unJugador.Edad = Convert.ToInt32(drMySQL["edad"].ToString());
+                        unJugador.Telefono = Convert.ToInt32(drMySQL["telefono"].ToString());
+                        unJugador.Calificacion = Convert.ToInt32(drMySQL["calificacion"].ToString());
+                        unJugador.CantidadDeVotos = Convert.ToInt32(drMySQL["cantidaddeVotos"].ToString());
+                        unJugador.Email = drMySQL["email"].ToString();
+                        unJugador.Contraseña = drMySQL["clave"].ToString();
+                        connMySQL.Close();
                     }
                 }
-                catch (Exception ErrorAccess)
-                {
-                    connAccess.Close();
-                }
-
                 return unJugador2;
             }
-
             catch (Exception)
             {
                 return unJugador2;
             }
         }
-        public static Jugador RegistrarJugador(Jugador unJugador)
+         public static Jugador TraerUnJugadorPorID(int idJugador)
         {
-            Jugador unJugador2 = new Jugador();
-            
+            Jugador unJugador = new Jugador();
 
             try
             {
+                ConectarDB();               
+                querystr = "SELECT * FROM Jugadores WHERE id='"+idJugador+"'";
+                cmdMySQL = new MySqlCommand(querystr, connMySQL);
+                MySqlDataReader drMySQL = cmdMySQL.ExecuteReader();
+
+                while (drMySQL.Read())
+                {                   
+                    if (Convert.ToInt32(drMySQL["id"].ToString()) == idJugador)
+                    {
+                        unJugador.ID = Convert.ToInt32(drMySQL["id"].ToString());
+                        unJugador.Nombre = drMySQL["nombre"].ToString();
+                        unJugador.Apellido = drMySQL["apellido"].ToString();
+                        unJugador.Foto = drMySQL["foto"].ToString();
+                        unJugador.Edad = Convert.ToInt32(drMySQL["edad"].ToString());
+                        unJugador.Telefono = Convert.ToInt32(drMySQL["telefono"].ToString());
+                        unJugador.Calificacion = Convert.ToInt32(drMySQL["calificacion"].ToString());
+                        unJugador.CantidadDeVotos = Convert.ToInt32(drMySQL["cantidaddeVotos"].ToString());
+                        unJugador.Email = drMySQL["email"].ToString();
+                        unJugador.Contraseña = drMySQL["clave"].ToString();
+                        connMySQL.Close();
+                    }
+                }
+                return unJugador;
+            }
+            catch (Exception)
+            {
+                return unJugador;
+            }
+        }
+        public static Jugador AgregarJugador(Jugador unJugador)
+        {
+            Jugador unJugador2 = new Jugador();
+            
+            try
+            {
                 ConectarDB();
-
-                //try
-                //{
-                //    querystr = "INSERT into Jugadores (nombre, apellido, foto, edad, telefono, calificacion, cantidaddevotos, email, clave) VALUES ('" + unJugador.nombre + "', '" + unJugador.apellido + "', '" + unJugador.foto + "', '" + unJugador.edad + "', '" + unJugador.telefono + "', '" + unJugador.calificacion + "', '" + unJugador.cantidaddevotos + "', '" + unJugador.email + "', '" + unJugador.contraseña + "' )";
-                //    cmdMySQL = new MySqlCommand(querystr, connMySQL);
-
-                //    int resultado = (int)cmdMySQL.ExecuteNonQuery();
-                //    if (resultado == 1)
-                //    {
-                //        unJugador2.Confcontraseña = "FUNCIONO";
-                //    }
-
-                //    connMySQL.Close();
-                //}
-
-                //catch (Exception ErrorMySQL)
-                //{
-                //unJugador2.Confcontraseña = ErrorMySQL.ToString()
-                //    connMySQL.Close();
-                //}
-
                 try
                 {
-                    OleDbCommand Consulta = connAccess.CreateCommand();
-                    Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-                    Consulta.CommandText = "AgregarJugador";
+                    querystr = "INSERT into Jugadores (nombre, apellido, foto, edad, telefono, calificacion, cantidaddevotos, email, clave) VALUES ('" + unJugador.Nombre + "', '" + unJugador.Apellido + "', '" + unJugador.Foto + "', '" + unJugador.Edad + "', '" + unJugador.Telefono + "', '" + unJugador.Calificacion + "', '" + unJugador.CantidadDeVotos + "', '" + unJugador.Email + "', '" + unJugador.Contraseña + "' )";
+                    cmdMySQL = new MySqlCommand(querystr, connMySQL);
 
-                    OleDbParameter nombre = new OleDbParameter("nombre", OleDbType.VarChar, 88);
-                    nombre.Value = unJugador.Nombre;
-                    OleDbParameter apellido = new OleDbParameter("apellido", OleDbType.VarChar, 88);
-                    apellido.Value = unJugador.Apellido;
-                    OleDbParameter foto = new OleDbParameter("foto", OleDbType.VarChar, 88);
-                    foto.Value = "";
-                    OleDbParameter edad = new OleDbParameter("edad", OleDbType.VarChar, 88);
-                    edad.Value = Convert.ToInt32(unJugador.Edad);
-                    OleDbParameter telefono = new OleDbParameter("telefono", OleDbType.VarChar, 88);
-                    telefono.Value = Convert.ToInt32(unJugador.Telefono);
-                    OleDbParameter calificacion = new OleDbParameter("calificacion", OleDbType.VarChar, 88);
-                    calificacion.Value = 0;
-                    OleDbParameter cantidaddevotos = new OleDbParameter("cantidaddevotos", OleDbType.VarChar, 88);
-                    cantidaddevotos.Value = 0;
-                    OleDbParameter email = new OleDbParameter("email", OleDbType.VarChar, 88);
-                    email.Value = unJugador.Email;
-                    OleDbParameter contraseña = new OleDbParameter("contraseña", OleDbType.VarChar, 88);
-                    contraseña.Value = unJugador.Contraseña;
-
-                    Consulta.Parameters.Add(nombre);
-                    Consulta.Parameters.Add(apellido);
-                    Consulta.Parameters.Add(foto);
-                    Consulta.Parameters.Add(edad);
-                    Consulta.Parameters.Add(telefono);
-                    Consulta.Parameters.Add(calificacion);
-                    Consulta.Parameters.Add(cantidaddevotos);
-                    Consulta.Parameters.Add(email);
-                    Consulta.Parameters.Add(contraseña);
-                    connAccess.Close();
+                    int resultado = (int)cmdMySQL.ExecuteNonQuery();
+                    if (resultado == 1)
+                    {
+                        return unJugador2;
+                    }
+                    connMySQL.Close();
                 }
-
-                catch (Exception ErrorAccess)
+                catch (Exception e)
                 {
-                    connAccess.Close();
+                    connMySQL.Close();
                 }
-
                 return unJugador2;
             }
 

@@ -219,3 +219,6 @@ C:\Users\42498978\Desktop\deprimera.com.ar\deprimera.com.ar\deprimera.com.ar\bin
 C:\Users\42498978\Desktop\deprimera.com.ar\deprimera.com.ar\deprimera.com.ar\obj\Debug\deprimera.com.ar.csprojResolveAssemblyReference.cache
 C:\Users\42498978\Desktop\deprimera.com.ar\deprimera.com.ar\deprimera.com.ar\obj\Debug\deprimera.com.ar.dll
 C:\Users\42498978\Desktop\deprimera.com.ar\deprimera.com.ar\deprimera.com.ar\obj\Debug\deprimera.com.ar.pdb
+C:\Users\Eze\Desktop\deprimera.com.ar\deprimera.com.ar\deprimera.com.ar\obj\Debug\deprimera.com.ar.csprojResolveAssemblyReference.cache
+C:\Users\Eze\Desktop\deprimera.com.ar\deprimera.com.ar\deprimera.com.ar\obj\Debug\deprimera.com.ar.dll
+C:\Users\Eze\Desktop\deprimera.com.ar\deprimera.com.ar\deprimera.com.ar\obj\Debug\deprimera.com.ar.pdb

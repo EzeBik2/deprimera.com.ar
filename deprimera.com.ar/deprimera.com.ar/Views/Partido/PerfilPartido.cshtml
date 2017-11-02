@@ -1,6 +1,9 @@
-﻿@model deprimera.com.ar.Models.Partido
+﻿@using deprimera.com.ar.Models
+@model Partido
 
 @{
+    Partido unPartido = new Partido();
+    unPartido = @ViewBag.Partido;
     Layout = null;
 }
 
@@ -35,17 +38,92 @@
     <main style="height: 800px; width: 1500px;">
         <section class="Arriba">
             <div class="Equipo">
+                <table>
+                    <tr>
+                        <td>
+                            ID:
+                        </td>
+                        <td>
+                            NOMBRE:
+                        </td>
+                        <td>
+                            ESTADO:
+                        </td>
+                        <td>
+                            ROL:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @for (int i = 0; i < unPartido.ListaDeJugadores.Count; i++)
+                            {
+                                i++;
+                                unPartido.ListaDeJugadores[i].IdJugador;
+                                @</td><td>@
+                                unPartido.ListaDeJugadores[i].NombreJugador;
+                                @</td><td>@
+                                unPartido.ListaDeJugadores[i].Estado;
+                                @</td><td>@
+                                unPartido.ListaDeJugadores[i].Rol;
+                            }
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div class="Opciones">
+                <table>
+                    <tr>
+                        <td>
+                            FECHA: + @unPartido.Fecha;
+                         </td>
+                        <td>
+                            Cancha: + @unPartido.Cancha;
+                        </td>
+                        <td>
+                            Cantidad de Jugadores: + @unPartido.CantJug;
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div class="Equipo">
+                <table>
+                    <tr>
+                        <td>
+                            ID:
+                        </td>
+                        <td>
+                            NOMBRE:
+                        </td>
+                        <td>
+                            ESTADO:
+                        </td>
+                        <td>
+                            ROL:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @for (int o = 0; o < unPartido.ListaDeJugadores.Count; o++)
+                            {
+                                unPartido.ListaDeJugadores[i].IdJugador;
+                                @</td><td>@
+                                unPartido.ListaDeJugadores[i].NombreJugador;
+                                @</td><td>@
+                                unPartido.ListaDeJugadores[i].Estado;
+                                @</td><td>@
+                                unPartido.ListaDeJugadores[i].Rol;
+                                o++;
+                            }
+                        </td>
+                    </tr>
+                </table>
             </div>
         </section>
         <section class="BARRA">
-            <div class="Abajo">
+            <a class="Abajo" href="@Url.Action("Modificar", "Partido", unPartido, null, ViewBag.JugadorLog, null)">
                 <h2>Continuar</h2>
                 <img class="Iconos" src="~/Images/pelota.png" style="height: 40px; width: 40px; margin-left: 94px; margin-top: 8px;" />
-            </div>
+            </a>
             <div class="Abajo" style="width:280px;">
                 <h2>Direccion De Equipo</h2>
                 <img class="Iconos" src="~/Images/direccion.png" style="height: 40px; width: 50px; margin-left: 118px; margin-top: 8px;" />
@@ -57,10 +135,18 @@
             <div class="Abajo">
                 <h2>Camisetas</h2>
             </div>
-            <a class="Abajo" href="@Url.Action("IrAPartido", "Home", ViewBag.JugadorLog, null)">
-                <h2>Volver</h2>
-                <img class="Iconos" src="~/Images/volver.png" style="height: 40px; width: 40px; margin-left: 94px; margin-top: 8px;" />
-            </a>
+            @for (int e = 0; e < unPartido.ListaDeJugadores.Count; e++)
+            {
+                if (unPartido.ListaDeJugadores[e].IdJugador == ViewBag.JugadorLog.ID)
+                {
+                    @{
+                        <a class="Abajo" href="@Url.Action("SalirDelPartido", "Partido", ViewBag.JugadorLog, null)">
+                            <h2>SALIR DEL PARTIDO</h2>
+                            <img class="Iconos" src="~/Images/volver.png" style="height: 40px; width: 40px; margin-left: 94px; margin-top: 8px;" />
+                        </a>
+                    }
+                }
+            }
         </section>
     </main>
     <footer></footer>

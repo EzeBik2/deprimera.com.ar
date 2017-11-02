@@ -141,6 +141,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EquipoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PartidoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -256,6 +257,7 @@
     <Content Include="Views\Home\Buscar.cshtml" />
     <Content Include="Views\Home\Equipo.cshtml" />
     <Content Include="Views\Partido\PerfilPartido.cshtml" />
+    <Content Include="Views\Equipo\PerfilEquipo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

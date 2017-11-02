@@ -19,71 +19,73 @@ namespace deprimera.com.ar.Controllers
         //    JugadorLogueado.ID = unPartido.ID;
         //    JugadorLogueado = Jugadores.TraerUnJugador(JugadorLogueado);
 
-        //    ViewBag.JugadorLog = JugadorLogueado;
-        //    return View("PerfilPartido");
+        //    ViewBag.JugadorLog = JugadorLogueado; //ENVIA DATOS DEL JUGADOR LOGUEADO A VISTA
+        //    unPartido.Cancha = Canchas.TraerCanchaPorId(unPartido.IdCancha);
+        //    ViewBag.Partido = unPartido;
+        //    return View("PerfilPartido"); //RETORNA AL PERFIL DEL PARTIDO
         //}
         //public ActionResult CrearPartido(Jugador unJugador)
         //{
         //    Partido PartidoEnBlanco = new Partido();
-        //    PartidoEnBlanco = Partidos.ArmarPartido(PartidoEnBlanco);
+        //    PartidoEnBlanco = Partidos.ArmarPartido(PartidoEnBlanco); //AGREGA UN PARTIDO EN BLANCO A LA BD
 
         //    PartidoJugador AgregarJugadorAPartido = new PartidoJugador();
         //    AgregarJugadorAPartido.IdPartido = PartidoEnBlanco.ID;
         //    AgregarJugadorAPartido.IdJugador = unJugador.ID;
         //    AgregarJugadorAPartido.Rol = "Admin";
         //    AgregarJugadorAPartido.Estado = "";
-        //    PartidosJugadores.AgregarJugadorAPartido(AgregarJugadorAPartido);
+        //    PartidosJugadores.AgregarJugadorAPartido(AgregarJugadorAPartido); //AGREGA AL JUGADOR A PARTIDO Y LO HACE ADMIN
 
-        //    PartidoEnBlanco.ListaDeJugadores.Add(AgregarJugadorAPartido);
-        //    return IrAPerfilPartido(PartidoEnBlanco);
+        //    PartidoEnBlanco.ListaDeJugadores.Add(AgregarJugadorAPartido); //AGREGA AL JUGADOR A LA LISTA DE LOS JUGADORES DEL EQUIPO LOCAL
+        //    return IrAPerfilPartido(PartidoEnBlanco); //RETORNA AL PERFIL EQUIPO
         //}
-        //public ActionResult ModificarPartido(Partido unPartido, Jugador unJugador)
+        //public ActionResult ModificarPartido(Partido unPartido, Jugador unJugador) //SE EJECUTA AL PRESIONAR CONTINUAR
         //{
-        //    unPartido = Partidos.Modificar(unPartido);
+        //    unPartido = Partidos.Modificar(unPartido); //MODIFICA TODOS LOS DATOS DEL PARTIDO DE LA BD
 
         //    foreach (PartidoJugador jugador in unPartido.ListaDeJugadores)
         //    {
-        //        PartidosJugadores.Modificar(jugador);
+        //        PartidosJugadores.Modificar(jugador); //MODIFICA TODAS LOS PARTIDOSJUGADORES DEL PARTIDO DE LA BD PARA ACTUALIZAR SUS ROLES Y ESTADOS
         //    }
 
         //    HomeController Controlador = new HomeController();
-        //    return Controlador.IrAPartido(unJugador);
+        //    return Controlador.IrAPartido(unJugador); //RETORNA A PARTIDO
         //}
-        //public ActionResult EntrarAPartido(PartidoJugador unJugador)
+        //public ActionResult EntrarAPartido(PartidoJugador unJugador) //SE EJECUTA CUANDO UN USUARIO ENTRA A UN PARTIDO YA CREADO
         //{
-        //    if (!PartidosJugadores.Traer(unJugador))
+        //    if (!PartidosJugadores.Traer(unJugador)) //VERIFICA QUE EL JUGADOR NO PERTENEZCA AL PARTIDO
         //    {
-        //        PartidosJugadores.AgregarJugadorAPartido(unJugador);
+        //        PartidosJugadores.AgregarJugadorAPartido(unJugador); //AGREGA AL JUGADOR AL PARTIDO
         //    }            
 
         //    Partido PartidoAEntrar = new Partido();
         //    PartidoAEntrar.ID = unJugador.IdPartido;
-        //    PartidoAEntrar = Partidos.TraerUnPartidoPorId(PartidoAEntrar);
-        //    PartidoAEntrar.ListaDeJugadores = PartidosJugadores.TraerJugadores(PartidoAEntrar.ID);
-        //    PartidoAEntrar.ID = unJugador.IdJugador;
+        //    PartidoAEntrar = Partidos.TraerUnPartidoPorId(PartidoAEntrar); //TRAE LOS DATOS DEL PARTIDO
+        //    PartidoAEntrar.ListaDeJugadores = PartidosJugadores.TraerJugadores(PartidoAEntrar.ID); //TRAE LA LISTA DE JUGADORES DEL PARTIDO
+        //    PartidoAEntrar.ID = unJugador.IdJugador; //PONGO EL ID DEL JUGADOR LOGUEADO EN EL ID DEL PARTIDO
 
-        //    return IrAPerfilPartido(PartidoAEntrar);
+        //    return IrAPerfilPartido(PartidoAEntrar); //RETORNA A PERFIL PARTIDO
         //}
-        //public ActionResult EliminarPartido(Partido unPartido, Jugador unJugador)
+        //public ActionResult EliminarPartido(Partido unPartido, Jugador unJugador) //SE EJECUTA CUANDO EL ULTIMO JUGADOR DEL PARTIDO SALE DEL PARTIDO O CUANDO EL ADMINISTRADOR DEL PARTIDO BORRA EL PARTIDO
         //{
-        //    Partidos.Eliminar(unPartido);
+        //    Partidos.Eliminar(unPartido); //ELIMINA EL PARTIDO DE LA BD
         //    foreach (PartidoJugador jugador in unPartido.ListaDeJugadores)
         //    {
-        //        PartidosJugadores.Eliminar(jugador);
+        //        PartidosJugadores.Eliminar(jugador); //ELIMINA A LOS JUGADORES DEL PARTIDO
         //    }
 
         //    HomeController Controlador = new HomeController();
-        //    return Controlador.IrAPartido(unJugador);
+        //    return Controlador.IrAPartido(unJugador); //RETORNA A PARTIDO
         //}
-        //public ActionResult SalirDelPartido(PartidoJugador unJugador)
+        //public ActionResult SalirDelPartido(PartidoJugador unJugador) //SE EJECUTA CUANDO UN JUGADOR SALE DEL PARTIDO
         //{
-        //    PartidosJugadores.Eliminar(unJugador);
+        //    PartidosJugadores.Eliminar(unJugador); //ELIMINA AL JUGADOR DEL PARTIDO
 
         //    Jugador jugador = new Jugador();
-        //    jugador.ID = unJugador.IdJugador;
+        //    jugador.ID = unJugador.IdJugador; //CARGA DATOS DEL JUGADOR
 
         //    HomeController Controlador = new HomeController();
-        //    return Controlador.IrAPartido(jugador);
+        //    return Controlador.IrAPartido(jugador); //RETORNA A PARTIDO
         //}
     }
 }
