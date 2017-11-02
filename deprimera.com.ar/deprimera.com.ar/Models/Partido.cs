@@ -7,14 +7,14 @@ namespace deprimera.com.ar.Models
 {
     public class Partido
     {
-        public int id { get; set; }
-
+        public int ID { get; set; }
         public DateTime Fecha { get; set; }
-
-        public int CantJug { get; set; }
-
         public int IdCancha { get; set; }
-
+        public int CantJug { get; set; }
+        public List<PartidoJugador> ListaDeJugadores {get; set;}
+        public int IdCamiseta1 { get; set; }
+        public int IdCamiseta2 { get; set; }
+        public int Duracion { get; set; }
         public string Funciono { get; set; }
     }
 }

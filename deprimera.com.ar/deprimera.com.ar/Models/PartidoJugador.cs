@@ -8,16 +8,10 @@ namespace deprimera.com.ar.Models
 {
     public class PartidoJugador
     {
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public int id { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public string estado { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public int idPartido { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        public int idJugador { get; set; }
+        public int ID { get; set; }
+        public string Estado { get; set; }
+        public string Rol { get; set; }
+        public int IdPartido { get; set; }
+        public int IdJugador { get; set; }
     }
 }
