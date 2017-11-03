@@ -1,238 +1,160 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MySql.Data.MySqlClient;
 
-
 namespace deprimera.com.ar.Models
 {
     public class EquiposJugadores
     {
-        static MySqlCommand cmd;
-
         static string querystr;
-
-        static string Proveedor = @"Data Source=localhost; Database=DBRSF; User ID=root; Password='root'";
-
-        static MySqlConnection conn = new MySqlConnection();
+        static string ProveedorMySQL;
+        static MySqlCommand cmdMySQL;
+        static MySqlConnection connMySQL = new MySqlConnection();
 
         private static void ConectarDB()
         {
-            conn.ConnectionString = Proveedor;
-            conn.Open();
+            connMySQL.ConnectionString = @"Database=localdb;Data Source=127.0.0.1:49164;User Id=azure;Password=6#vWHD_$";
+            connMySQL.Open();
         }
-
-
-        public static bool Agregar(EquipoJugador A)
+        public static EquipoJugador AgregarJugadorAEquipo(EquipoJugador unEquipoJugador)
         {
+            string Error = null;
             try
             {
                 ConectarDB();
 
-                querystr = "INSERT into EquiposJugadores (estado, idEquipo, idJugador) VALUES ('" + A.estado + "', '" + A.idEquipo + "', '" + A.idJugador + "' )";
-                cmd = new MySqlCommand(querystr, conn);
-
-                int resultado = (int)cmd.ExecuteNonQuery();
-                bool funciono = false;
-                if (resultado == 1)
+                try
                 {
-                    funciono = true;
+                    querystr = "INSERT into EquiposJugadores (estado, rol, idequipo, idjugador) VALUES ('" + unEquipoJugador.Estado + "', '" + unEquipoJugador.Rol + "', '" + unEquipoJugador.IdEquipo + "', '" + unEquipoJugador.IdJugador + "' )";
+                    cmdMySQL = new MySqlCommand(querystr, connMySQL);
+
+                    int resultado = (int)cmdMySQL.ExecuteNonQuery();
+                    if (resultado == 1)
+                    {
+                        connMySQL.Close();
+                    }
+                    return unEquipoJugador;
                 }
 
-                conn.Close();
-                return funciono;
-            }
-
-            catch (Exception e)
-            {
-                conn.Close();
-                return false;
-            }
-        }
-        public static bool CambiarEstado(EquipoJugador A)
-        {
-            try
-            {
-                ConectarDB();
-
-                querystr = "UPDATE Equiposjugadores SET estado = '" + A.estado + "' WHERE id = '" + A.id + "'";
-                cmd = new MySqlCommand(querystr, conn);
-
-                int resultado = (int)cmd.ExecuteNonQuery();
-                bool funciono = false;
-                if (resultado == 1)
+                catch (Exception ErrorMySQL)
                 {
-                    funciono = true;
+                    Error = ErrorMySQL.ToString();
+                    connMySQL.Close();
+                    return unEquipoJugador;
                 }
-
-                conn.Close();
-                return funciono;
             }
-
-            catch (Exception e)
+            catch
             {
-                conn.Close();
-                return false;
+                connMySQL.Close();
+                return unEquipoJugador;
             }
         }
-        public static List<int> TraerJugadores(EquipoJugador A)
+        public static EquipoJugador TraerEquipoJugadorPorIDs(int idEquipo, int idJugador)
         {
-            List<int> JugadoresdeEquipo = new List<int>();
-
+            EquipoJugador unEquipoJugador = new EquipoJugador();
             try
             {
                 ConectarDB();
-
                 querystr = "SELECT * FROM EquiposJugadores";
-                cmd = new MySqlCommand(querystr, conn);
-                MySqlDataReader dr = cmd.ExecuteReader();
-
-                while (dr.Read())
+                cmdMySQL = new MySqlCommand(querystr, connMySQL);
+                MySqlDataReader drMySQL = cmdMySQL.ExecuteReader();
+                while (drMySQL.Read())
                 {
-                    if (Convert.ToInt32(dr["Idequipo"].ToString()) == A.idEquipo)
+                    if (Convert.ToInt32(drMySQL["idequipo"].ToString()) == idEquipo && Convert.ToInt32(drMySQL["idjugador"].ToString()) == idJugador)
                     {
-                        JugadoresdeEquipo.Add(Convert.ToInt32(dr["Idjugador"].ToString()));
+                        unEquipoJugador.ID = Convert.ToInt32(drMySQL["id"].ToString());
+                        unEquipoJugador.Estado = drMySQL["estado"].ToString();
+                        unEquipoJugador.Rol = drMySQL["rol"].ToString();
+                        unEquipoJugador.IdEquipo = Convert.ToInt32(drMySQL["idequipo"].ToString());
+                        unEquipoJugador.IdJugador = Convert.ToInt32(drMySQL["idjugador"].ToString());
+                        connMySQL.Close();
                     }
                 }
-                
-                conn.Close();
-                return JugadoresdeEquipo;
+                return unEquipoJugador;
             }
-
-            catch (Exception e)
+            catch (Exception)
             {
-                conn.Close();
-                return JugadoresdeEquipo;
+                connMySQL.Close();
+                return unEquipoJugador;
             }
         }
-        public static List<int> TraerEquipos(EquipoJugador A)
-        {
-            List<int> EquiposDeJugador = new List<int>();
 
+        public static List<EquipoJugador> TraerJugadores(int idEquipo)
+        {
+            EquipoJugador unEquipoJugador = new EquipoJugador();
+            List<EquipoJugador> listaEquíposJugadores = new List<EquipoJugador>();
             try
             {
                 ConectarDB();
-
                 querystr = "SELECT * FROM EquiposJugadores";
-                cmd = new MySqlCommand(querystr, conn);
-                MySqlDataReader dr = cmd.ExecuteReader();
+                cmdMySQL = new MySqlCommand(querystr, connMySQL);
+                MySqlDataReader drMySQL = cmdMySQL.ExecuteReader();
 
-                while (dr.Read())
+                while (drMySQL.Read())
                 {
-                    if (Convert.ToInt32(dr["Idjugador"].ToString()) == A.idJugador)
+                    if (Convert.ToInt32(drMySQL["idequipo"].ToString()) == idEquipo)
                     {
-                        EquiposDeJugador.Add(Convert.ToInt32(dr["Idequipo"].ToString()));
+                        unEquipoJugador.ID = Convert.ToInt32(drMySQL["id"].ToString());
+                        unEquipoJugador.Estado = drMySQL["estado"].ToString();
+                        unEquipoJugador.Rol = drMySQL["rol"].ToString();
+                        unEquipoJugador.IdEquipo = Convert.ToInt32(drMySQL["idequipo"].ToString());
+                        unEquipoJugador.IdJugador = Convert.ToInt32(drMySQL["idjugador"].ToString());
+                        listaEquíposJugadores.Add(unEquipoJugador);
                     }
                 }
 
-                conn.Close();
-                return EquiposDeJugador;
+                connMySQL.Close();
+                return listaEquíposJugadores;
             }
-
-            catch (Exception e)
+            catch (Exception)
             {
-                conn.Close();
-                return EquiposDeJugador;
-            }
-        }
-        public static EquipoJugador Traer(EquipoJugador X)
-        {
-            EquipoJugador W = new EquipoJugador();
-            try
-            {
-                ConectarDB();
-
-                querystr = "SELECT * FROM EquiposJugadores";
-                cmd = new MySqlCommand(querystr, conn);
-                MySqlDataReader dr = cmd.ExecuteReader();
-                
-                while (dr.Read())
-                {
-                    if (Convert.ToInt32(dr["Id"].ToString()) == X.id)
-                    {
-                        W.id = X.id;
-                        W.estado = dr["Estado"].ToString();
-                        W.idEquipo = Convert.ToInt32(dr["Idequipo"].ToString());
-                        W.idJugador = Convert.ToInt32(dr["Idjugador"].ToString());
-                        conn.Close();
-                        return W;
-                    }
-                    int A = Convert.ToInt32(dr["Idjugador"].ToString());
-                    int B = Convert.ToInt32(dr["Idequipo"].ToString());
-                    if (A == X.idJugador && B == X.idEquipo)
-                    {
-                        W.id = Convert.ToInt32(dr["Id"].ToString());
-                        W.estado = dr["Estado"].ToString();
-                        W.idEquipo = Convert.ToInt32(dr["Idequipo"].ToString());
-                        W.idJugador = Convert.ToInt32(dr["Idjugador"].ToString());
-                        conn.Close();
-                        return W;
-                    }
-                }
-
-                conn.Close();
-                return W;
-            }
-
-            catch (Exception e)
-            {
-                conn.Close();
-                return W;
+                connMySQL.Close();
+                return listaEquíposJugadores;
             }
         }
-        public static bool EliminarEquipo(int A)
+        public static EquipoJugador ModificarEquipoJugador(EquipoJugador unEquipoJugador)
         {
+            ConectarDB();
             try
             {
-                ConectarDB();
-
-                querystr = "DELETE FROM Equipos WHERE id = '" + A.ToString() + "'";
-                cmd = new MySqlCommand(querystr, conn);
-
-                int resultado = (int)cmd.ExecuteNonQuery();
-                bool funciono = false;
+                querystr = "UPDATE EquiposJugadores SET estado = '" + unEquipoJugador.Estado + "', rol = '" + unEquipoJugador.Rol + "', idequipo = '" + unEquipoJugador.IdEquipo + "', idjugador = '" + unEquipoJugador.IdJugador + "' WHERE id = '" + unEquipoJugador.ID + "'";
+                cmdMySQL = new MySqlCommand(querystr, connMySQL);
+                int resultado = (int)cmdMySQL.ExecuteNonQuery();
                 if (resultado == 1)
                 {
-                    funciono = true;
+                    connMySQL.Close();
                 }
-
-                conn.Close();
-                return funciono;
+                return unEquipoJugador;
             }
-
             catch (Exception e)
             {
-                conn.Close();
-                return false;
+                connMySQL.Close();
+                return unEquipoJugador;
             }
         }
-        public static bool Eliminar(int A)
+        public static bool EliminarEquipoJugador(EquipoJugador unEquipoJugador)
         {
+            bool funciono = false;
             try
             {
                 ConectarDB();
-
-                querystr = "DELETE FROM EquiposJugadores WHERE id = '" + A.ToString() + "'";
-                cmd = new MySqlCommand(querystr, conn);
-
-                int resultado = (int)cmd.ExecuteNonQuery();
-                bool funciono = false;
+                querystr = "DELETE FROM EquiposJugadores WHERE id = '" + unEquipoJugador.ID + "'";
+                cmdMySQL = new MySqlCommand(querystr, connMySQL);
+                int resultado = (int)cmdMySQL.ExecuteNonQuery();
                 if (resultado == 1)
                 {
+                    connMySQL.Close();
                     funciono = true;
                 }
-
-                conn.Close();
                 return funciono;
             }
-
             catch (Exception e)
             {
-                conn.Close();
-                return false;
+                connMySQL.Close();
+                return funciono;
             }
         }
-
     }
 }
