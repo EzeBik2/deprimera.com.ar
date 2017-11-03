@@ -12,7 +12,13 @@ namespace deprimera.com.ar.Models
         static string ProveedorMySQL;
         static MySqlCommand cmdMySQL;
         static MySqlConnection connMySQL = new MySqlConnection();
-
+        public static string ConnectionString
+        {
+            get
+            {
+                return CloudConfigurationManager.GetSetting("MySqlConnectionString");
+            }
+        }
         private static void ConectarDB()
         {
             connMySQL.ConnectionString = @"Database=localdb;Data Source=127.0.0.1;User Id=azure;Password=6#vWHD_$;Port:49164";
