@@ -21,7 +21,7 @@ namespace deprimera.com.ar.Controllers
             }
             else
             {
-                if (Objeto.unJugador != null)
+                if (Objeto.unJugador.Nombre != null)
                 {
                     return Registrarse(Objeto.unJugador);
                 }
