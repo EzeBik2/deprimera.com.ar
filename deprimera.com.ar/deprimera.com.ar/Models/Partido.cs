@@ -18,5 +18,7 @@ namespace deprimera.com.ar.Models
         public int Duracion { get; set; }
         public string SEPUEDE { get; set; }
         public string Funciono { get; set; }
+        public int Calificacion { get; set; }
+        public int CantidedDeVotos { get; set; }
     }
 }

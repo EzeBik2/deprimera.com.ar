@@ -9,6 +9,7 @@ namespace deprimera.com.ar.Models
 {
     public class PartidosJugadores
     {
+        static string querystr;
         static string ProveedorMySQL;
         static MySqlCommand cmdMySQL;
         static MySqlConnection connMySQL = new MySqlConnection();
@@ -18,25 +19,140 @@ namespace deprimera.com.ar.Models
             connMySQL.ConnectionString = @"Database=localdb;Data Source=127.0.0.1:49164;User Id=azure;Password=6#vWHD_$";
             connMySQL.Open();
         }
-        public static string AgregarJugadorAPartido(PartidoJugador unJugadorPartido)
+        public static PartidoJugador AgregarJugadorAPartido(PartidoJugador unPartidoJugador)
         {
-            //AGREGAR DATOS A LA TABLA PARTIDOSJUGADORES.
+            PartidoJugador unPartidoJugador2 = new PartidoJugador();
+            try
+            {
+                ConectarDB();
+                try
+                {
+                    querystr = "INSERT into PartidosJugadores (estado, rol, idpartido, idjugador) VALUES ('" + unPartidoJugador.Estado + "', '" + unPartidoJugador.Rol + "', '" + unPartidoJugador.IdPartido + "', '" + unPartidoJugador.IdJugador + "' )";
+                    cmdMySQL = new MySqlCommand(querystr, connMySQL);
+                    int resultado = (int)cmdMySQL.ExecuteNonQuery();
+                    if (resultado == 1)
+                    {
+                        return unPartidoJugador2;
+                    }
+                    connMySQL.Close();
+                }
+                catch (Exception e)
+                {
+                    connMySQL.Close();
+                }
+                return unPartidoJugador2;
+            }
+
+            catch (Exception)
+            {
+                return unPartidoJugador2;
+            }
         }
-        public static PartidoJugador Traer(PartidoJugador unJugador)
+        public static PartidoJugador ModificarPartidoJugador(PartidoJugador unPartidoJugador)
         {
-            //TRAER DATOS DE UNA FILA DE LA TABLA PARTIDOSJUGADORES POR ID O POR IDEQUIPO Y IDJUGADOR SI NO LLEGA EL ID.
+            ConectarDB();
+            try
+            {
+                querystr = "UPDATE PartidosJugadores SET estado = '" + unPartidoJugador.Estado + "', rol = '" + unPartidoJugador.Rol + "', idpartido = '" + unPartidoJugador.IdPartido + "', idjugador = '" + unPartidoJugador.IdJugador + "' WHERE id = '" + unPartidoJugador.ID + "'";
+                cmdMySQL = new MySqlCommand(querystr, connMySQL);
+                int resultado = (int)cmdMySQL.ExecuteNonQuery();
+                if (resultado == 1)
+                {
+                    connMySQL.Close();
+                }
+                return unPartidoJugador;
+            }
+            catch (Exception e)
+            {
+                connMySQL.Close();
+                return unPartidoJugador ;
+            }
+        }
+        public static PartidoJugador TraerPartidoJugadorPorIDs(int idPartido, int idJugador)
+        {
+            PartidoJugador unPartidoJugador = new PartidoJugador();
+            try
+            {
+                ConectarDB();
+                querystr = "SELECT * FROM PartidosJugadores";
+                cmdMySQL = new MySqlCommand(querystr, connMySQL);
+                MySqlDataReader drMySQL = cmdMySQL.ExecuteReader();
+
+                while (drMySQL.Read())
+                {
+                    if (Convert.ToInt32(drMySQL["idpartido"].ToString()) == idPartido && Convert.ToInt32(drMySQL["idjugador"].ToString()) == idJugador)
+                    {
+                        unPartidoJugador.ID = Convert.ToInt32(drMySQL["id"].ToString());
+                        unPartidoJugador.Estado = drMySQL["estado"].ToString();
+                        unPartidoJugador.Rol = drMySQL["rol"].ToString();
+                        unPartidoJugador.IdPartido = Convert.ToInt32(drMySQL["idpartido"].ToString());
+                        unPartidoJugador.IdJugador = Convert.ToInt32(drMySQL["idjugador"].ToString());
+                        connMySQL.Close();
+                    }
+                }
+                return unPartidoJugador;
+            }
+            catch (Exception)
+            {
+                connMySQL.Close();
+                return unPartidoJugador;
+            }
         }
         public static List<PartidoJugador> TraerJugadores(int IdPartido)
         {
-            //TRAER DATOS DE LA TABLA PARTIDOSJUGADORES QUE TENGAN COMO ID PARTIDO LA VARIABLE INT DE AHI ARRIBA.
+            PartidoJugador unPartidoJugador = new PartidoJugador();
+            List<PartidoJugador> listaPartidosJugadores = new List<PartidoJugador>();
+            try
+            {
+                ConectarDB();
+                querystr = "SELECT * FROM PartidosJugadores";
+                cmdMySQL = new MySqlCommand(querystr, connMySQL);
+                MySqlDataReader drMySQL = cmdMySQL.ExecuteReader();
+            
+                while (drMySQL.Read())
+                {
+                    if (Convert.ToInt32(drMySQL["idpartido"].ToString()) == IdPartido)
+                    {
+                        unPartidoJugador.ID = Convert.ToInt32(drMySQL["id"].ToString());
+                        unPartidoJugador.Estado = drMySQL["estado"].ToString();
+                        unPartidoJugador.Rol = drMySQL["rol"].ToString();
+                        unPartidoJugador.IdPartido = Convert.ToInt32(drMySQL["idpartido"].ToString());
+                        unPartidoJugador.IdJugador = Convert.ToInt32(drMySQL["idjugador"].ToString());
+                        listaPartidosJugadores.Add(unPartidoJugador);
+                        connMySQL.Close();
+                    }
+                }
+                return listaPartidosJugadores;
+            }
+            catch (Exception)
+            {
+                connMySQL.Close();
+                return listaPartidosJugadores;
+            }
         }
-        public static bool Modificar(PartidoJugador unJugador)
+        public static bool Eliminar(PartidoJugador unPartidoJugador)
         {
-            //MODIFICAR TODOS LOS DATOS DE UNA FILA DE LA TABLA PARTIDOSJUGADORES SEGUN SU ID.
-        }
-        public static bool Eliminar(PartidoJugador unJugador)
         {
-            //ELIMINAR UNA FILA DE LA TABLA PARTIDOSJUGADORES SEGUN SU ID.
+                bool funciono = false;
+            try
+            {
+                ConectarDB();
+                querystr = "DELETE FROM PartidosJugadores WHERE id = '" + unPartidoJugador.ID + "'";
+                cmdMySQL = new MySqlCommand(querystr, connMySQL);
+                int resultado = (int)cmdMySQL.ExecuteNonQuery();
+                if (resultado == 1)
+                {
+                    connMySQL.Close();
+                    funciono = true;
+                }
+                return funciono;
+            }
+            catch (Exception e)
+            {
+                connMySQL.Close();
+                return funciono;
+            }
         }
+    }
     }
 }

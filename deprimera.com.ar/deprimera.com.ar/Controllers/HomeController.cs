@@ -60,7 +60,7 @@ namespace deprimera.com.ar.Controllers
         }
         public ActionResult Ingresar(Jugador jugadorqueseestalogueando)
         {
-            jugadorqueseestalogueando = Jugadores.TraerUnJugador(jugadorqueseestalogueando); //Verifica que exista el jugador, devuelve un jugador
+            jugadorqueseestalogueando = Jugadores.TraerUnJugadorPorEmailClave(jugadorqueseestalogueando); //Verifica que exista el jugador, devuelve un jugador
             if (jugadorqueseestalogueando.ID > 0)
             {
                 return IrAIndex(jugadorqueseestalogueando); //Si el jugador devuelto tiene un id valido, existe y ejecuta el metodo Logueado
@@ -72,7 +72,7 @@ namespace deprimera.com.ar.Controllers
         }
         public ActionResult Registrarse(Jugador jugadorqueseestaregistrando)
         {
-            jugadorqueseestaregistrando = Jugadores.RegistrarJugador(jugadorqueseestaregistrando);
+            jugadorqueseestaregistrando = Jugadores.AgregarJugador(jugadorqueseestaregistrando);
             if (jugadorqueseestaregistrando.ID > 0)
             {
                 return IrAIndex(jugadorqueseestaregistrando);
@@ -84,6 +84,7 @@ namespace deprimera.com.ar.Controllers
         }
         public ActionResult AfiliarCancha(Cancha cancharegistrar)
         {
+            Canchas.AgregarCancha(cancharegistrar);
             return LandingPage();
         }
     }

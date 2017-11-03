@@ -10,7 +10,6 @@ namespace deprimera.com.ar.Models
     public class Partidos
     {
         static string querystr;
-
         static string ProveedorMySQL;
         static MySqlCommand cmdMySQL;
         static MySqlConnection connMySQL = new MySqlConnection();
@@ -27,7 +26,7 @@ namespace deprimera.com.ar.Models
             try
             {
                 ConectarDB();
-                querystr = "INSERT into Partidos (fecha, idcancha, cantjug, idcamiseta1, idcamiseta2, duracion, funciono, calificacion, cantidaddevotos) VALUES ('" + unPartido2.Fecha + "', '" + unPartido2.IdCancha + "', '" + unPartido2.CantJug + "', '" + unPartido2.IdCamiseta1 + "', '" + unPartido2.IdCamiseta2 + "', '" + unPartido2.Duracion + "', '" + unPartido2.Funciono + "', '" + unPartido2.Calificacion + ", " + unPartido2.CantidadDeVotos +"' )";
+                querystr = "INSERT into Partidos (fecha, idcancha, cantjug, idcamiseta1, idcamiseta2, sepuede, duracion, calificacion, cantidaddevotos) VALUES ('" + unPartido2.Fecha + "', '" + unPartido2.IdCancha + "', '" + unPartido2.CantJug + "', '" + unPartido2.IdCamiseta1 + "', '" + unPartido2.IdCamiseta2 + "', '" + unPartido2.SEPUEDE + "', '" + unPartido2.Duracion + "', '" + unPartido2.Calificacion + ", " + unPartido2.CantidedDeVotos +"' )";
                 cmdMySQL = new MySqlCommand(querystr, connMySQL);
 
                 int resultado = (int)cmdMySQL.ExecuteNonQuery();
@@ -65,10 +64,10 @@ namespace deprimera.com.ar.Models
                         //unPartido.ListaDeJugadores = drMySQL["listadejugadores"].ToString();
                         unPartido.IdCamiseta1 = Convert.ToInt32(drMySQL["idcamiseta1"].ToString());
                         unPartido.IdCamiseta2 = Convert.ToInt32(drMySQL["idcamiseta2"].ToString());
+                        unPartido.SEPUEDE = drMySQL["sepuede"].ToString();
                         unPartido.Duracion = Convert.ToInt32(drMySQL["duracion"].ToString());
-                        unPartido.Funciono = drMySQL["funciono"].ToString();
                         unPartido.Calificacion = Convert.ToInt32(drMySQL["calificacion"].ToString());
-                        unPartido.CantidadDeVotos = Convert.ToInt32(drMySQL["cantidaddevotos"].ToString());
+                        unPartido.CantidedDeVotos = Convert.ToInt32(drMySQL["cantidaddevotos"].ToString());
                         connMySQL.Close();
                     }
                 }
@@ -81,10 +80,10 @@ namespace deprimera.com.ar.Models
         }
         public static Partido ModificarPartidoPorID(Partido unPartido)
         {
+            ConectarDB();
             try
             {
-                ConectarDB();
-                querystr = "UPDATE Partidos SET fecha = '" + unPartido.Fecha + "', idcancha = '" + unPartido.IdCancha + "', cantjug = '" + unPartido.CantJug + "', idcamiseta1 = '" + unPartido.IdCamiseta1 + "', idcamiseta2 = '" + unPartido.IdCamiseta2 + "', duracion = '" + unPartido.Duracion + "', funciono = '" + unPartido.Funciono + "', calificacion = '" + unPartido.Calificacion + "', cantidaddevotos = '" + unPartido.CantidadDeVotos + "' WHERE id = '" + unPartido.ID + "'";
+                querystr = "UPDATE Partidos SET fecha = '" + unPartido.Fecha + "', idcancha = '" + unPartido.IdCancha + "', cantjug = '" + unPartido.CantJug + "', idcamiseta1 = '" + unPartido.IdCamiseta1 + "', idcamiseta2 = '" + unPartido.IdCamiseta2 + "', sepuede = '" + unPartido.SEPUEDE + "', duracion = '" + unPartido.Duracion + "', calificacion = '" + unPartido.Calificacion + "', cantidaddevotos = '" + unPartido.CantidedDeVotos + "' WHERE id = '" + unPartido.ID + "'";
                 cmdMySQL = new MySqlCommand(querystr, connMySQL);
                 int resultado = (int)cmdMySQL.ExecuteNonQuery();
                 if (resultado == 1)
@@ -100,8 +99,9 @@ namespace deprimera.com.ar.Models
                 return unPartido;
             }
         }
-        public static Partido EliminarPartidoPorID(Partido unPartido)
+        public static bool EliminarPartidoPorID(Partido unPartido)
         {
+            bool funciono = false;
             try
             {
                 ConectarDB();
@@ -111,13 +111,14 @@ namespace deprimera.com.ar.Models
                 if (resultado == 1)
                 {
                     connMySQL.Close();
+                    funciono = true;
                 }
-                return unPartido;
+                return funciono;
             }
             catch (Exception e)
             {
                 connMySQL.Close();
-                return unPartido;
+                return funciono;
             }
         }
     }
