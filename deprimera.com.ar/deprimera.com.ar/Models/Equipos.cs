@@ -1,207 +1,196 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data.OleDb;
 using MySql.Data.MySqlClient;
 
 namespace deprimera.com.ar.Models
 {
     public class Equipos
     {
+        static MySqlCommand cmd;
+
         static string querystr;
-        static string ProveedorMySQL;
-        static MySqlCommand cmdMySQL;
-        static MySqlConnection connMySQL = new MySqlConnection();
+
+        static string Proveedor = @"Data Source=localhost; Database=DBRSF; User ID=root; Password='root'";
+
+        static MySqlConnection conn = new MySqlConnection();
 
         private static void ConectarDB()
         {
-            connMySQL.ConnectionString = @"Data Source=localhost; Database=DBRSF; User ID=root; Password='root'";
-            connMySQL.Open();
+            conn.ConnectionString = Proveedor;
+            conn.Open();
         }
-        public static Equipo ArmarEquipo(Equipo equipoarmar)
+
+        public static bool AgregarUnEquipo(Equipo equipoAAgregar)
         {
             try
             {
                 ConectarDB();
 
-                try
-                {
-                    querystr = "INSERT into Equipos (nombre, cantjug, calificacion, cantvotos) VALUES ('" + equipoarmar.nombre + "', '" + equipoarmar.cantjug + "', '" + 0 + "', '" + 0 + "' )";
-                    cmdMySQL = new MySqlCommand(querystr, connMySQL);
+                querystr = "INSERT into Equipos (nombre, cantjug, calificacion, cantvotos) VALUES ('" + equipoAAgregar.nombre + "', '" + equipoAAgregar.cantjug + "', '" + 0 + "', '" + 0 + "' )";
+                cmd = new MySqlCommand(querystr, conn);
 
-                    int resultado = (int)cmdMySQL.ExecuteNonQuery();
-                    bool funciono = false;
-                    if (resultado == 1)
-                    {
-                        funciono = true;
-                        connMySQL.Close();
-                    }
-                    return equipoarmar;
+                int resultado = (int)cmd.ExecuteNonQuery();
+                bool funciono = false;
+                if (resultado == 1)
+                {
+                    funciono = true;
                 }
 
-                catch (Exception ErrorMySQL)
-                {
-                    equipoarmar.Funciono = ErrorMySQL.ToString();
-                    connMySQL.Close();
-                    return equipoarmar;
-                }
+                conn.Close();
+                return funciono;
             }
+
             catch (Exception e)
             {
-                connMySQL.Close();
-                return equipoarmar;
+                conn.Close();
+                return false;
             }
         }
-        public static List<Equipo> TraerEquiposPorNombre(Equipo unEquipo)
+        public static bool ModificarUnEquipo(Equipo equipoAModificar)
+        {
+            try
+            {
+                ConectarDB();
+
+                querystr = "UPDATE Equipos SET nombre = '" + equipoAModificar.nombre + "', barrio = '" + equipoAModificar.cantjug + "', calle = '" + equipoAModificar.calificacion + "', telefono = '" + equipoAModificar.cantvotos + "' WHERE id = '" + equipoAModificar.id + "'";
+                cmd = new MySqlCommand(querystr, conn);
+
+
+                int resultado = (int)cmd.ExecuteNonQuery();
+                bool funciono = false;
+                if (resultado == 1)
+                {
+                    funciono = true;
+                }
+
+                conn.Close();
+                return funciono;
+            }
+
+            catch (Exception e)
+            {
+                conn.Close();
+                return false;
+            }
+        }
+        public static Equipo TraerUnEquipo(Equipo unEquipo)
+        {
+            Equipo unEquipo2 = new Equipo();
+
+            try
+            {
+                ConectarDB();
+
+                querystr = "SELECT * FROM Equipos";
+                cmd = new MySqlCommand(querystr, conn);
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    if (unEquipo.id > 0)
+                    {
+                        if (Convert.ToInt32(dr["Id"].ToString()) == unEquipo.id)
+                        {
+                            unEquipo2.id = Convert.ToInt32(dr["Id"].ToString());
+                            unEquipo2.nombre = dr["Nombre"].ToString();
+                            unEquipo2.cantjug = Convert.ToInt32(dr["Cantjug"].ToString());
+                            unEquipo2.calificacion = Convert.ToInt32(dr["Calificacion"].ToString());
+                            unEquipo2.cantvotos = Convert.ToInt32(dr["Cantvotos"].ToString());
+                            conn.Close();
+                            return unEquipo2;
+                        }
+                    }
+                    else
+                    {
+                        if (dr["Nombre"].ToString() == unEquipo.nombre)
+                        {
+                            unEquipo2.id = Convert.ToInt32(dr["Id"].ToString());
+                            unEquipo2.nombre = dr["Nombre"].ToString();
+                            unEquipo2.cantjug = Convert.ToInt32(dr["Cantjug"].ToString());
+                            unEquipo2.calificacion = Convert.ToInt32(dr["Calificacion"].ToString());
+                            unEquipo2.cantvotos = Convert.ToInt32(dr["Cantvotos"].ToString());
+                            conn.Close();
+                            return unEquipo2;
+                        }
+                    }                    
+                }
+
+                conn.Close();
+                return unEquipo2;
+            }
+
+            catch (Exception e)
+            {
+                conn.Close();
+                return unEquipo2;
+            }
+        }
+        public static List<Equipo> TraerEquipos(Equipo unEquipo)
         {
             List<Equipo> ListadeEquipos = new List<Equipo>();
-            List<Equipo> ListadeEquipos2 = new List<Equipo>();
-
             try
             {
                 ConectarDB();
 
-                //try
-                //{
-                //    querystr = "SELECT * FROM Equipos";
-                //    cmdMySQL = new MySqlCommand(querystr, connMySQL);
-                //    MySqlDataReader dr = cmdMySQL.ExecuteReader();
+                querystr = "SELECT * FROM Equipos";
+                cmd = new MySqlCommand(querystr, conn);
+                MySqlDataReader dr = cmd.ExecuteReader();
 
-                //    while (drMySQL.Read())
-                //    {
-                //        Equipo unEquipo2 = new Equipo();
-                //        unEquipo2.id = Convert.ToInt32(drMySQL["Id"].ToString());
-                //        unEquipo2.nombre = drMySQL["Nombre"].ToString();
-                //        unEquipo2.cantjug = Convert.ToInt32(drMySQL["Cantjug"].ToString());
-                //        unEquipo2.calificacion = Convert.ToInt32(drMySQL["Calificacion"].ToString());
-                //        unEquipo2.cantvotos = Convert.ToInt32(drMySQL["Cantvotos"].ToString());
-                //        if (unEquipo.nombre.Contains(unEquipo2.nombre) || unEquipo2.nombre.Contains(unEquipo.nombre))
-                //        {
-                //            ListadeEquipos.Add(unEquipo2);
-                //        }
-                //    }
-                //    connMySQL.Close();
-                //}
-
-                //catch (Exception ErrorMySQL)
-                //{
-                //    connMySQL.Close();
-                //    ListadeEquipos[0].nombre = ErrorMySQL.ToString();
-                //}
-
-                try
+                while (dr.Read())
                 {
-                    OleDbCommand Consulta = connAccess.CreateCommand();
-                    Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-                    Consulta.CommandText = "TraerEquipos";
-
-                    OleDbDataReader drAccess = Consulta.ExecuteReader();
-                    while (drAccess.Read())
+                    Equipo unEquipo2 = new Equipo();
+                    unEquipo2.id = Convert.ToInt32(dr["Id"].ToString());
+                    unEquipo2.nombre = dr["Nombre"].ToString();
+                    unEquipo2.cantjug = Convert.ToInt32(dr["Cantjug"].ToString());
+                    unEquipo2.calificacion = Convert.ToInt32(dr["Calificacion"].ToString());
+                    unEquipo2.cantvotos = Convert.ToInt32(dr["Cantvotos"].ToString());
+                    if (unEquipo2.nombre.Contains(unEquipo.nombre))
                     {
-                        Equipo unEquipo2 = new Equipo();
-                        unEquipo2.id = Convert.ToInt32(drAccess["Id"].ToString());
-                        unEquipo2.nombre = drAccess["Nombre"].ToString();
-                        unEquipo2.cantjug = Convert.ToInt32(drAccess["Cantjug"].ToString());
-                        unEquipo2.calificacion = Convert.ToInt32(drAccess["Calificacion"].ToString());
-                        unEquipo2.cantvotos = Convert.ToInt32(drAccess["Cantvotos"].ToString());
-                        if (unEquipo.nombre.Contains(unEquipo2.nombre) || unEquipo2.nombre.Contains(unEquipo.nombre))
-                        {
-                            ListadeEquipos2.Add(unEquipo2);
-                        }
+                        ListadeEquipos.Add(unEquipo2);
                     }
-                    connAccess.Close();
+                    if (unEquipo2.id == unEquipo.id)
+                    {
+                        ListadeEquipos.Add(unEquipo2);
+                    }
                 }
-
-                catch (Exception ErrorAccess)
-                {
-                    connAccess.Close();
-                }
-
-                return ListadeEquipos2;
+                conn.Close();
+                return ListadeEquipos;
             }
 
-            catch (Exception ErrorConexionBD)
+            catch (Exception e)
             {
-                ListadeEquipos2[0].nombre = ErrorConexionBD.ToString();
-                return ListadeEquipos2;
+                conn.Close();
+                return ListadeEquipos;
             }
-
         }
-        public static Equipo TraerUnEquipoPorId(Equipo unEquipo)
+        public static bool EliminarUnEquipo(int A)
         {
             try
             {
                 ConectarDB();
 
-                //try
-                //{
-                //    querystr = "SELECT * FROM Equipos";
-                //    cmdMySQL = new MySqlCommand(querystr, connMySQL);
-                //    MySqlDataReader dr = cmdMySQL.ExecuteReader();
+                querystr = "DELETE FROM Equipos WHERE id = '" + A + "'";
+                cmd = new MySqlCommand(querystr, conn);
 
-                //    while (drMySQL.Read())
-                //    {
-                //        Equipo unEquipo2 = new Equipo();
-                //        unEquipo2.id = Convert.ToInt32(drMySQL["Id"].ToString());
-                //        unEquipo2.nombre = drMySQL["Nombre"].ToString();
-                //        unEquipo2.cantjug = Convert.ToInt32(drMySQL["Cantjug"].ToString());
-                //        unEquipo2.calificacion = Convert.ToInt32(drMySQL["Calificacion"].ToString());
-                //        unEquipo2.cantvotos = Convert.ToInt32(drMySQL["Cantvotos"].ToString());
-                //        if (unEquipo2.id == unEquipo.id)
-                //        {
-                //            unEquipo = unEquipo2;
-                //            break;
-                //        }
-                //    }
-                //    connMySQL.Close();
-                //}
-
-                //catch (Exception ErrorMySQL)
-                //{
-                //    unEquipo.nombre = ErrorMySQL.ToString();
-                //    connMySQL.Close();
-                //}
-
-                try
+                int resultado = (int)cmd.ExecuteNonQuery();
+                bool funciono = false;
+                if (resultado == 1)
                 {
-                    OleDbCommand Consulta = connAccess.CreateCommand();
-                    Consulta.CommandType = System.Data.CommandType.StoredProcedure;
-                    Consulta.CommandText = "TraerEquipos";
-
-                    OleDbDataReader drAccess = Consulta.ExecuteReader();
-                    while (drAccess.Read())
-                    {
-                        Equipo unEquipo2 = new Equipo();
-                        unEquipo2.id = Convert.ToInt32(drAccess["Id"].ToString());
-                        unEquipo2.nombre = drAccess["Nombre"].ToString();
-                        unEquipo2.cantjug = Convert.ToInt32(drAccess["Cantjug"].ToString());
-                        unEquipo2.calificacion = Convert.ToInt32(drAccess["Calificacion"].ToString());
-                        unEquipo2.cantvotos = Convert.ToInt32(drAccess["Cantvotos"].ToString());
-                        if (unEquipo2.id == unEquipo.id)
-                        {
-                            unEquipo = unEquipo2;
-                            break;
-                        }
-                    }
-                    connAccess.Close();
+                    funciono = true;
                 }
 
-                catch (Exception ErrorAccess)
-                {
-                    connAccess.Close();
-                }
-
-                return unEquipo;
+                conn.Close();
+                return funciono;
             }
 
-            catch (Exception ErrorConexionBD)
+            catch (Exception e)
             {
-                unEquipo.nombre = ErrorConexionBD.ToString();
-                return unEquipo;
+                conn.Close();
+                return false;
             }
-
-
         }
+
     }
 }
