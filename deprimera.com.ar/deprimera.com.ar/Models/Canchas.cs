@@ -104,7 +104,7 @@ namespace deprimera.com.ar.Models
                             CANCHA.Calle1 = drMySQL["calle2"].ToString();
                             CANCHA.Telefono = Convert.ToInt32(drMySQL["telefono"].ToString());
                             CANCHA.Calificacion = Convert.ToInt32(drMySQL["calificacion"].ToString());
-                            CANCHA.Calle1 = Convert.ToInt32(drMySQL["cantidaddevotos"].ToString());
+                            CANCHA.CantidadDeVotos = Convert.ToInt32(drMySQL["cantidaddevotos"].ToString());
                             break;
                         }
                     }
