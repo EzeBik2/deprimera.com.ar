@@ -15,7 +15,7 @@ namespace deprimera.com.ar.Models
 
         private static void ConectarDB()
         {
-            connMySQL.ConnectionString = @"Database=dbdeprimera;Data Source=localhost;User Id=Azure;Password=W6YP0Pn2NbRYqAqH";
+            connMySQL.ConnectionString = @"Database=dbdeprimera;Data Source=localhost;User Id=azure;Password=6#vWHD_$";
             connMySQL.Open();
         }
         public static Jugador TraerUnJugadorPorEmailClave(Jugador unJugador)
@@ -90,7 +90,6 @@ namespace deprimera.com.ar.Models
         }
         public static Jugador AgregarJugador(Jugador unJugador)
         {
-            Jugador unJugador2 = new Jugador();
             
             try
             {
@@ -103,20 +102,20 @@ namespace deprimera.com.ar.Models
                     int resultado = (int)cmdMySQL.ExecuteNonQuery();
                     if (resultado == 1)
                     {
-                        return unJugador2;
+                        connMySQL.Close();
                     }
-                    connMySQL.Close();
+                    return unJugador;
                 }
                 catch (Exception e)
                 {
                     connMySQL.Close();
+                    return unJugador;
                 }
-                return unJugador2;
             }
 
             catch (Exception)
             {
-                return unJugador2;
+                return unJugador;
             }
         }
         //public static List<Jugador> TraerJugadoresPorNombre(Jugador unJugador)

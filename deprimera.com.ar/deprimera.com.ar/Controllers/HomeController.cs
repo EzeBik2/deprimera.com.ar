@@ -15,7 +15,7 @@ namespace deprimera.com.ar.Controllers
         }
         public ActionResult VieneDeLanding(Landing Objeto)
         {
-            if (Objeto.unaCancha.Nombre.Length > 0)
+            if (Objeto.unaCancha != null)
             {
                 return AfiliarCancha(Objeto.unaCancha);
             }
