@@ -38,7 +38,6 @@ namespace deprimera.com.ar.Controllers
         }
         public ActionResult IrAPartido(Jugador jugadorqueseestalogueando)
         {
-            //TRAER LISTA DE MIS PARTIDOS + LISTA DE PARTIDOS CON VACANTES
             ViewBag.jugadorqueselogueo = jugadorqueseestalogueando;
             return View("Partido"); //Si fallo el programa que vuelva a inicio.
         }
