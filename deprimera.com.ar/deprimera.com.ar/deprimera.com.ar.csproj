@@ -258,6 +258,12 @@
     <Content Include="Views\Home\Equipo.cshtml" />
     <Content Include="Views\Partido\PerfilPartido.cshtml" />
     <Content Include="Views\Equipo\PerfilEquipo.cshtml" />
+    <Content Include="Views\Partido\MisPartidos.cshtml" />
+    <Content Include="Views\Partido\PartidosConVacantes.cshtml" />
+    <Content Include="Views\Equipo\MisEquipos.cshtml" />
+    <Content Include="Views\Equipo\EquiposConVacantes.cshtml" />
+    <Content Include="Views\Equipo\BuscarEquipos.cshtml" />
+    <Content Include="Views\Partido\BuscarPartidos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

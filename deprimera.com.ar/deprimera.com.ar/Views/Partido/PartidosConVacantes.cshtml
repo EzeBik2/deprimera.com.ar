@@ -1,0 +1,54 @@
+﻿@using deprimera.com.ar.Models
+@model Partido
+
+@{
+    List<Partido> unPartido = new List<Partido>();
+    unPartido = ViewBag.Lista;
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MisPartidos</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                ID
+            </td>
+            <td>
+                Fecha
+            </td>
+            <td>
+                Cancha
+            </td>
+            <td>
+                Ver
+            </td>
+            <td>
+                Entrar Al Partido
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @for (int i = 0; i < unPartido.Count; i++)
+                {
+                    @unPartido[i].ID;
+                    *@</td><td>
+                    @unPartido[i].Fecha;</td><td>
+                    @unPartido[i].Cancha.Nombre;
+                    </td><td>
+                    @unPartido[i].ID = ViewBag.JugadorLog.ID;
+                    @<a href="@Url.Action("VerPartido", "Partido", unPartido[i], null)">X</a>
+                    </td><td>
+                    @<a href="@Url.Action("EntrarAPartido", "Partido", unPartido[i], null)">X</a>
+            }
+        </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -8,45 +8,71 @@
 </head>
 <body>
     <header>
-        <div class="TOP">
-            <a href="@Url.Action("IrAIndex", "Home", ViewBag.jugadorqueselogueo, null)"> <img class="Logo" src="~/Images/Logo.png" /></a>
-            <div class="MenuPersonal">
-                <div class="Barra">
-                    <a class="A NombreUsuario">NOMBRE DE USUARIO</a>
-                    <a href=""><img class="Iconos" src="~/Images/Perfil.png" style="height: 40px; width: 30px;" /></a>
-                    <a href=""><img class="Iconos" src="~/Images/Notificaciones.png" style="height: 40px; width: 40px;" /></a>
-                    <a href=""><img class="Iconos" src="~/Images/salir.png" style="height: 40px; width: 40px;" /></a>
+        <section>
+            <div class="TOP">
+                <a href="@Url.Action("IrAIndex", "Home", ViewBag.jugadorqueselogueo, null)"> <img class="Logo" src="~/Images/Logo.png" /></a>
+                <div class="MenuPersonal">
+                    <div class="Barra">
+                        <div class="A NombreUsuario">NOMBRE DE USUARIO</div>
+                        <a data-toggle="modal" data-target="#exampleModal"><img class="Iconos" src="~/Images/Perfil.png" style="height: 40px; width: 30px;" /></a>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="width: 800px;">
+                                    <div class="modal-header">
+                                        <h2 class="modal-title" id="exampleModalLabel" style="text-align: center; font-size: 30px;">INGRESE</h2>
+                                    </div>
+                                    <div class="modal-body" style="height: 600px;">
+                                        <!--PREFIL JUGADOR-->
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Send message</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            $('#exampleModal').on('show.bs.modal', function (event) {
+                                var button = $(event.relatedTarget)
+                            })
+                        </script>
+                        <a href="@Url.Action("UltimasNotificaciones", "Home", ViewBag.jugadorqueselogueo, null)"><img class="Iconos" src="~/Images/Notificaciones.png" style="height: 40px; width: 40px;" /></a>
+                        <a href="@Url.Action("IrALanding", "Home")"><img class="Iconos" src="~/Images/salir.png" style="height: 40px; width: 40px;" /></a>
+                    </div>
+                    <div class="Triangulo"></div>
                 </div>
-                <div class="Triangulo"></div>
             </div>
-        </div>
-        <div class="MenuPrincipal">
-            <ul>
-                <li><a class="A" href="@Url.Action("IrAIndex", "Home", ViewBag.jugadorqueselogueo, null)">INICIO</a></li>
-                <li><a class="A" href="@Url.Action("IrAPartido", "Home", ViewBag.jugadorqueselogueo, null)">PARTIDO</a></li>
-                <li><a class="A" href="@Url.Action("IrAEquipo", "Home", ViewBag.jugadorqueselogueo, null)">EQUIPO</a></li>
-                <li><a class="A" href="@Url.Action("IrABuscar", "Home", ViewBag.jugadorqueselogueo, null)">BUSCAR</a></li>
-                <li><a class="A" href="#">CHAT</a></li>
-            </ul>
-        </div>
+        </section>
+        <section>
+            <div class="MenuPrincipal">
+                <ul>
+                    <li><a class="A" href="@Url.Action("IrAIndex", "Home", ViewBag.jugadorqueselogueo, null)">INICIO</a></li>
+                    <li><a class="A" href="@Url.Action("IrAPartido", "Home", ViewBag.jugadorqueselogueo, null)">PARTIDO</a></li>
+                    <li><a class="A" href="@Url.Action("IrAEquipo", "Home", ViewBag.jugadorqueselogueo, null)">EQUIPO</a></li>
+                    <li><a class="A" href="@Url.Action("IrABuscar", "Home", ViewBag.jugadorqueselogueo, null)">BUSCAR</a></li>
+                    <li><a class="A" href="@Url.Action("IrAChat", "Home", ViewBag.jugadorqueselogueo, null)">CHAT</a></li>
+                </ul>
+            </div>
+        </section>
     </header>
+
     <main>
         <div class="Arriba">
-            <a class="Rectangulo">
+            <a class="Rectangulo" href="@Url.Action("IrABuscarJugadores", "Jugador", ViewBag.jugadorqueselogueo, null)">
                 <img alt="Messi" class="Messi" src="~/Images/Messi2.png" />
                 <h2>BUSCAR JUGADORES</h2>
             </a>
-            <a class="Rectangulo">
+            <a class="Rectangulo" href="@Url.Action("IrABuscarCanchas", "Cancha", ViewBag.jugadorqueselogueo, null)">
                 <img alt="Robben" class="Robben" src="~/Images/Robben.png" />
                 <h2>BUSCAR CANCHAS</h2>
             </a>
         </div>
         <div class="Abajo">
-            <a class="Rectangulo">
+            <a class="Rectangulo" href="@Url.Action("IrABuscarPartidos", "Partido", ViewBag.jugadorqueselogueo, null)">
                 <img alt="Martial" class="Martial" src="~/Images/Martial.png" />
                 <h2>BUSCAR PARTIDOS</h2>
             </a>
-            <a class="Rectangulo">
+            <a class="Rectangulo" href="@Url.Action("IrABuscarEquipos", "Equipo", ViewBag.jugadorqueselogueo, null)">
                 <img alt="Robben" class="Robben" src="~/Images/Ribery.png" />
                 <h2>BUSCAR EQUIPOS</h2>
             </a>

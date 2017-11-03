@@ -3,7 +3,7 @@
 
 @{
     Partido unPartido = new Partido();
-    unPartido = @ViewBag.Partido;
+    unPartido = ViewBag.Partido;
     Layout = null;
 }
 
@@ -58,13 +58,13 @@
                             @for (int i = 0; i < unPartido.ListaDeJugadores.Count; i++)
                             {
                                 i++;
-                                unPartido.ListaDeJugadores[i].IdJugador;
-                                @</td><td>@
-                                unPartido.ListaDeJugadores[i].NombreJugador;
-                                @</td><td>@
-                                unPartido.ListaDeJugadores[i].Estado;
-                                @</td><td>@
-                                unPartido.ListaDeJugadores[i].Rol;
+                                @unPartido.ListaDeJugadores[i].IdJugador;
+                                *@</td><td>
+                                @unPartido.ListaDeJugadores[i].NombreJugador;
+                                </td><td>
+                                @unPartido.ListaDeJugadores[i].Estado;
+                                </td><td>
+                                @unPartido.ListaDeJugadores[i].Rol;
                             }
                         </td>
                     </tr>

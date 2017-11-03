@@ -87,5 +87,39 @@ namespace deprimera.com.ar.Controllers
             HomeController Controlador = new HomeController();
             return Controlador.IrAPartido(jugador); //RETORNA A PARTIDO
         }
+        public ActionResult IrAMisPartidos(Jugador unJugador)
+        {
+            PartidoJugador unPartidoJugador = new PartidoJugador();
+            unPartidoJugador.IdJugador = unJugador.ID;
+            List<PartidoJugador> Lista = PartidosJugadores.TraerPartidos(unPartidoJugador);
+            foreach (PartidoJugador PartJug in Lista)
+            {
+                PartJug.Fecha = Partidos.TraerPartidoPorID(PartJug.IdPartido).Fecha;
+                PartJug.Cancha = Canchas.TraerCanchaPorId(Partidos.TraerPartidoPorID(PartJug.IdPartido).IdCancha).Nombre;
+            }
+            ViewBag.Lista = Lista;
+            return View("MisPartidos");
+        }
+        public ActionResult IrAPartidosConVacantes(Jugador unJugador)
+        {
+            List<Partido> Lista = Partidos.TraerTodos();
+            foreach (Partido PartJug in Lista)
+            {
+                PartidoJugador unParti = new PartidoJugador();
+                unParti.IdPartido = PartJug.ID;
+                unParti.IdJugador = unJugador.ID;
+                if (PartidosJugadores.TraerPartidoJugadorPorIDs(unParti).ID > 0)
+                {
+                    Lista.Remove(PartJug);
+                }
+                else
+                {
+                    PartJug.Cancha = Canchas.TraerCanchaPorId(PartJug.IdCancha);
+                }
+            }
+            ViewBag.Lista = Lista;
+            ViewBag.JugadorLog = unJugador;
+            return View("PartidosConVacantes");
+        }
     }
 }

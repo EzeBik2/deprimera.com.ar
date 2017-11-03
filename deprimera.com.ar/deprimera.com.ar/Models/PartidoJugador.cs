@@ -14,5 +14,7 @@ namespace deprimera.com.ar.Models
         public int IdPartido { get; set; }
         public int IdJugador { get; set; }
         public string NombreJugador { get; set; }
+        public DateTime Fecha { get; set; }
+        public string Cancha { get; set; }
     }
 }

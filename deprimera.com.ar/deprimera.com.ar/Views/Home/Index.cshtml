@@ -11,10 +11,31 @@
                 <a href="@Url.Action("IrAIndex", "Home", ViewBag.jugadorqueselogueo, null)"> <img class="Logo" src="~/Images/Logo.png" /></a>
                 <div class="MenuPersonal">
                     <div class="Barra">
-                        <a class="A NombreUsuario">NOMBRE DE USUARIO</a>
-                        <a href=""><img class="Iconos" src="~/Images/Perfil.png" style="height: 40px; width: 30px;" /></a>
-                        <a href=""><img class="Iconos" src="~/Images/Notificaciones.png" style="height: 40px; width: 40px;" /></a>
-                        <a href=""><img class="Iconos" src="~/Images/salir.png" style="height: 40px; width: 40px;" /></a>
+                        <div class="A NombreUsuario">NOMBRE DE USUARIO</div>
+                        <a data-toggle="modal" data-target="#exampleModal"><img class="Iconos" src="~/Images/Perfil.png" style="height: 40px; width: 30px;" /></a>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="width: 800px;">
+                                    <div class="modal-header">
+                                        <h2 class="modal-title" id="exampleModalLabel" style="text-align: center; font-size: 30px;">INGRESE</h2>
+                                    </div>
+                                    <div class="modal-body" style="height: 600px;">
+                                        <!--PREFIL JUGADOR-->
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Send message</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            $('#exampleModal').on('show.bs.modal', function (event) {
+                                var button = $(event.relatedTarget)
+                            })
+                        </script>
+                        <a href="@Url.Action("UltimasNotificaciones", "Home", ViewBag.jugadorqueselogueo, null)"><img class="Iconos" src="~/Images/Notificaciones.png" style="height: 40px; width: 40px;" /></a>
+                        <a href="@Url.Action("IrALanding", "Home")"><img class="Iconos" src="~/Images/salir.png" style="height: 40px; width: 40px;" /></a>
                     </div>
                     <div class="Triangulo"></div>
                 </div>
@@ -27,7 +48,7 @@
                     <li><a class="A" href="@Url.Action("IrAPartido", "Home", ViewBag.jugadorqueselogueo, null)">PARTIDO</a></li>
                     <li><a class="A" href="@Url.Action("IrAEquipo", "Home", ViewBag.jugadorqueselogueo, null)">EQUIPO</a></li>
                     <li><a class="A" href="@Url.Action("IrABuscar", "Home", ViewBag.jugadorqueselogueo, null)">BUSCAR</a></li>
-                    <li><a class="A" href="#">CHAT</a></li>
+                    <li><a class="A" href="@Url.Action("IrAChat", "Home", ViewBag.jugadorqueselogueo, null)">CHAT</a></li>
                 </ul>
             </div>
         </section>
@@ -36,14 +57,14 @@
     <main>
         <section>
             <div class="PrimeraMitad">
-                <a href="@Url.Action("IrAPerfilPartido", "Partido", ViewBag.jugadorqueselogueo, null)" class="Bloque">
+                <a href="@Url.Action("CrearPartido", "Partido", ViewBag.jugadorqueselogueo, null)" class="Bloque">
                     <div class="TituloYDecripcion">
                         <h1> ARMA TU PARTIDO </h1>
                         <p> Organiza un partido, invita a tus amigos, completa las vacantes con desconocidos. </p>
                     </div>
                     <img src="~/Images/CristianoRonaldo.png" class="Imagen1" />
                 </a>
-                <a href="#" class="Bloque" style="margin-left: 20px;">
+                <a href="@Url.Action("CrearEquipo", "Partido", ViewBag.jugadorqueselogueo, null)" class="Bloque" style="margin-left: 20px;">
                     <div class="TituloYDecripcion">
                         <h1>CREA TU PROPIO EQUIPO</h1>
                         <p>Crea tu equipo con tus amigos, y desafia a los equipos de tus otros amigos o al de desconosidos o sino entra a un torneo con tu equipo.</p>
@@ -54,65 +75,72 @@
         </section>
         <section>
             <div class="SegundaMitad">
-                <a data-toggle="modal" data-target="#exampleModal" data-whatever="PartidosConVacantes" class="Rectangulo">
+                <a href="@Url.Action("VerPartidosConVacantes", "Partido", ViewBag.jugadorqueselogueo, null)" data-toggle="modal" data-target="#exampleModal" data-whatever="PartidosConVacantes" class="Rectangulo">
                     <div class="Titulo">
                         <h1>PARTIDOS CON VACANTES<h1 />
                     </div>
                     <img src="~/Images/Puyol.png" class="Imagen2" />
                 </a>
                 <div class="DosMiniBloques">
-                    <a data-toggle="modal" data-target="#exampleModal" data-whatever="PartidosConVacantes" class="MiniBloque">
+                    <a data-toggle="modal" data-target="#exampleModal2" class="MiniBloque">
                         <div class="Titulo">
                             <h1>TUTORIAL<h1/>
                         </div>
                         <img src="~/Images/Zidane.png" class="Imagen3" />
                     </a>
-                    <a data-toggle="modal" data-target="#exampleModal" data-whatever="PartidosConVacantes" class="MiniBloque" style="float: right;">
+                    <script>
+                        $('#exampleModal2').on('show.bs.modal', function (event) {
+                            var button = $(event.relatedTarget)
+                    </script>
+                    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!--MODAL TUTORIAL-->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a  data-toggle="modal" data-target="#exampleModal3" class="MiniBloque" style="float: right;">
                         <div class="Titulo">
                             <h1>CONTACTO<h1/>
                         </div>
                         <img src="~/Images/Guardiola.png" class="Imagen3" />
                     </a>
-                </div>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="message-text" class="col-form-label">Message:</label>
-                                        <textarea class="form-control" id="message-text"></textarea>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Send message</button>
+                    <script>
+                            $('#exampleModal3').on('show.bs.modal', function (event) {
+                                var button = $(event.relatedTarget)
+                    </script>
+                    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel3">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!--MODAL CONTACTO-->
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <script>
-                    $('#exampleModal').on('show.bs.modal', function (event) {
-                        var button = $(event.relatedTarget) // Button that triggered the modal
-                        var recipient = button.data('whatever') // Extract info from data-* attributes
-                        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-                        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-                        var modal = $(this)
-                        modal.find('.modal-title').text('New message to ' + recipient)
-                        modal.find('.modal-body input').val(recipient)
-                    })
-                </script>
             </div>
         </section>
     </main>
