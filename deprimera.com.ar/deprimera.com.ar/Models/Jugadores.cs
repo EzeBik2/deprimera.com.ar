@@ -14,7 +14,7 @@ namespace deprimera.com.ar.Models
         static MySqlConnection connMySQL = new MySqlConnection();
         private static void ConectarDB()
         {
-            connMySQL.ConnectionString = @"Database=localdb;Data Source=127.0.0.1;User Id=azure;Password=6#vWHD_$;Port:49164";
+            connMySQL.ConnectionString = @"Database=localdb;Data Source=127.0.0.1;User Id=azure;Password=6#vWHD_$";
             connMySQL.Open();
         }
         public static Jugador TraerUnJugadorPorEmailClave(Jugador unJugador)
