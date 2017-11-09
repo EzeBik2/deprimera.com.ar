@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data.OleDb;
 using MySql.Data.MySqlClient;
 
 namespace deprimera.com.ar.Models
@@ -16,7 +13,7 @@ namespace deprimera.com.ar.Models
 
         private static void ConectarDB()
         {
-            connMySQL.ConnectionString = @"Database=localdb;Data Source=127.0.0.1;User Id=azure;Password=6#vWHD_$";
+            connMySQL.ConnectionString = @"Database=localdb;Data Source=127.0.0.1;User Id=SurixOne;Password=poker123";
             connMySQL.Open();
         }
         public static PartidoJugador AgregarJugadorAPartido(PartidoJugador unPartidoJugador)
