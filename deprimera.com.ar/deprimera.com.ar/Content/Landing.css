@@ -86,7 +86,8 @@ h4 {
 .Octava {
     background-color: #E8E8EE;
     width: 100%;
-    height: auto;
+    padding-top: 25px;
+    height: 280px;
     margin-bottom: 50px;
 }
 
@@ -163,8 +164,8 @@ p {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 30%;
-    padding-left: 6%;
+    width: 500px;
+    padding-left: 100px;
 }
 
 .redsocial {
@@ -173,10 +174,18 @@ p {
     width: 100px;
 }
 
-    .redsocial:hover {
-        -webkit-transition-duration: 0.7s; /* Safari */
-        transition-duration: 0.7s;
-        margin-top: 1.7%;
-        height: 130px;
-        width: 130px;
-    }
+.redsocial:hover {
+    -webkit-transition-duration: 0.7s; /* Safari */
+    transition-duration: 0.7s;
+    margin-top: 1.7%;
+    height: 130px;
+    width: 130px;
+}
+.Novena {
+    margin-bottom: 10px;
+}
+footer{
+    height: 50px;
+    width: 100%;
+    background-color: black;
+}
