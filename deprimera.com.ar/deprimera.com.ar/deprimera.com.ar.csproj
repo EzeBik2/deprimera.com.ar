@@ -196,6 +196,7 @@
     <Content Include="Images\equipo.png" />
     <Content Include="Images\EquipoB.png" />
     <Content Include="Images\EquipoIdeal.png" />
+    <Content Include="Images\Facebook.png" />
     <Content Include="Images\Fondo.jpg" />
     <Content Include="Images\Fondo2.jpg" />
     <Content Include="Images\Fondo3.jpg" />
@@ -211,12 +212,14 @@
     <Content Include="Images\opciones.png" />
     <Content Include="Images\pelota.png" />
     <Content Include="Images\perfil.png" />
+    <Content Include="Images\Plus.png" />
     <Content Include="Images\pogba.png" />
     <Content Include="Images\Puyol.png" />
     <Content Include="Images\Ribery.png" />
     <Content Include="Images\Robben.png" />
     <Content Include="Images\Rooney.png" />
     <Content Include="Images\salir.png" />
+    <Content Include="Images\Twitter.png" />
     <Content Include="Images\volver.png" />
     <Content Include="Images\Zidane.png" />
     <Content Include="Scripts\bootstrap.js" />
