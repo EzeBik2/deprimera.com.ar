@@ -12,7 +12,7 @@
     background-attachment: fixed
 }
 .TOP {
-    width: 100%;
+    width: 1400px;
     height: 150px;
 }
 .Logo {
@@ -24,11 +24,11 @@
     display: inline-block;
 }
 .MenuPersonal {
+    width: 400px;
     height: 50px;
     margin-top: 30px;
     margin-right: 80px;
     float: right;
-    display: inline-block;
 }
 .Triangulo {
     float: right;

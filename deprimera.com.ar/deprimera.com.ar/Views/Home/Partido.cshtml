@@ -53,7 +53,7 @@
         </section>
     </header>
     <main>
-        <section class="Izquierda">
+        <section style="width: 50%; height: 500px; float: left;">
             <div class="Crear">
                 <a href="@Url.Action("CrearPartido", "Partido", ViewBag.jugadorqueselogueo, null)">
                     <div class="Texto" style="width: 40%;">
@@ -64,7 +64,7 @@
                 </a>
             </div>
         </section>
-        <section class="Derecha">
+        <section style="width: 40%; height: 500px; float: left;">
             <a href="@Url.Action("IrAPartidosConVacantes", "Partido", ViewBag.jugadorqueselogueo, null)" class="Mis">
                 <h2 class="TITULO">PARTIDOS CON VACANTES</h2>
                 <img class="Ibrahimovic" src="~/Images/Puyol.png" />

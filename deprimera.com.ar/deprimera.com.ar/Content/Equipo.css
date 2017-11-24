@@ -19,13 +19,9 @@ font-family: OpenSans-Regular;
 src:url(/fonts/OpenSans-Regular.ttf);
 }
 main {
-    height: 700px;
+    height: 450px;
+    display: block;
     width: 100%;
-}
-section {
-    height: 80%;
-    width: 50%;
-    float: left;
 }
 .Crear {
     height: 80%;
@@ -55,7 +51,6 @@ img {
 
 .Messi {
     height: 100%;
-    width: 45%;
 }
 
 .Mis {
