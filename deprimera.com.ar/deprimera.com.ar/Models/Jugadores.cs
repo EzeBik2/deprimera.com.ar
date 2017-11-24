@@ -14,7 +14,8 @@ namespace deprimera.com.ar.Models
         static MySqlConnection connMySQL = new MySqlConnection();
         private static void ConectarDB()
         {
-            connMySQL.ConnectionString = @"server=127.0.0.1;Port=49209;database=localdb;userid=azure;password=6#vWHD_$;";
+            //connMySQL.ConnectionString = @"server=127.0.0.1;Port=49209;database=localdb;User ID=azure;password=6#vWHD_$;";
+            connMySQL.ConnectionString = @"Data Source=localhost;database=localdb;User ID=root;Password=root;";
             connMySQL.Open();
         }
         public static Jugador TraerUnJugadorPorEmailClave(Jugador unJugador)
@@ -42,12 +43,12 @@ namespace deprimera.com.ar.Models
                         unJugador.CantidadDeVotos = Convert.ToInt32(drMySQL["cantidaddeVotos"].ToString());
                         unJugador.Email = drMySQL["email"].ToString();
                         unJugador.Contraseña = drMySQL["clave"].ToString();
-                        connMySQL.Close();
                     }
                 }
-                return unJugador2;
+                connMySQL.Close();
+                return unJugador;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return unJugador2;
             }
