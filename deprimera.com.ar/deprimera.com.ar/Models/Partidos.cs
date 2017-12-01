@@ -24,20 +24,11 @@ namespace deprimera.com.ar.Models
         public static Partido ArmarPartido(Partido unPartido)
         {
             Partido unPartido2 = new Partido();
-            string dt;
-            string dt2;
-            DateTime date = DateTime.Now;
-            DateTime date2 = DateTime.Now;
-            dt = date.ToLongTimeString();        // display format:  11:45:44 AM
-            dt2 = date2.ToShortDateString();     // display format:  5/22/2010
-            DateTime dt3 = Convert.ToDateTime(string.Concat(dt, " ", dt2));
             try
             {
                 ConectarDB();
-                querystr = "INSERT into Partidos (fecha, idcancha, cantjug, idcamiseta1, idcamiseta2, sepuede, duracion, calificacion, cantidaddevotos) VALUES (@date, '" + unPartido2.IdCancha + "', '" + unPartido2.CantJug + "', '" + unPartido2.IdCamiseta1 + "', '" + unPartido2.IdCamiseta2 + "', '" + unPartido2.SEPUEDE + "', '" + unPartido2.Duracion + "', '" + unPartido2.Calificacion + ", " + unPartido2.CantidedDeVotos +"' )";
-                c
+                querystr = "INSERT into Partidos (id, fecha, idcancha, cantjug, idcamiseta1, idcamiseta2, sepuede, duracion, calificacion, cantidaddevotos) VALUES (" + 0 + ", '" + unPartido.Fecha.ToString("yyyy-MM-dd HH:mm:ss") + "', " + unPartido2.IdCancha + ", " + unPartido2.CantJug + ", " + unPartido2.IdCamiseta1 + ", " + unPartido2.IdCamiseta2 + ", '' , " + unPartido2.Duracion + ", " + unPartido2.Calificacion + ", " + unPartido2.CantidedDeVotos + ")";
                 cmdMySQL = new MySqlCommand(querystr, connMySQL);
-                cmdMySQL.Parameters.Add("@date", MySqlDbType.Datetime).Value = dt3;
                 int resultado = (int)cmdMySQL.ExecuteNonQuery();
                 if (resultado == 1)
                 {
@@ -50,7 +41,7 @@ namespace deprimera.com.ar.Models
 
                 while (drMySQL.Read())
                 {
-                    if (drMySQL["idcancha"].ToString() == null)
+                    if (drMySQL["idcancha"].ToString() == "0")
                     {
                         unPartido.ID = Convert.ToInt32(drMySQL["id"].ToString());
                     }

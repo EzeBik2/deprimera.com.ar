@@ -171,6 +171,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\localdb.sql" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Buscar.css" />
@@ -271,9 +272,7 @@
     <Content Include="Views\Equipo\BuscarEquipos.cshtml" />
     <Content Include="Views\Partido\BuscarPartidos.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
