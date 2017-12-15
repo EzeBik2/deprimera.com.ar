@@ -15,7 +15,8 @@ namespace deprimera.com.ar.Models
 
         private static void ConectarDB()
         {
-            connMySQL.ConnectionString = @"server=127.0.0.1;userid=azure;password=6#vWHD_$;database=localdb;Port=21096";
+            //connMySQL.ConnectionString = @"server=127.0.0.1;userid=azure;password=6#vWHD_$;database=localdb;Port=21096";
+            connMySQL.ConnectionString = @"Data Source=localhost;database=database;User ID=Usuario;Password=Usuario;";
             connMySQL.Open();
         }
         public static Cancha AgregarCancha(Cancha unaCancha)

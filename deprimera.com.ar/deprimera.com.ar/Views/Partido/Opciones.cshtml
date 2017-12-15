@@ -1,0 +1,35 @@
+﻿@model deprimera.com.ar.Models.ModificarPartido
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Opciones</title>
+</head>
+<body>
+    <div class="Container">
+        <div class="Caja">
+            <div class="Caja1">
+                <h1>OPCIONES DEL PARTIDO</h1>
+            </div>
+            <div class="Caja2">
+                <form method="POST" action="@Url.Action("ModificarPartido", "Home")">
+                    <h2>FECHA: @Html.TextBoxFor(x => x.unPartido.Fecha)</h2>
+                    <h3>CANCHA: @Html.TextBoxFor(x => x.unPartido.Cancha)</h3>
+                    <h2>CANTIDAD DE JUGADORES: @Html.TextBoxFor(x => x.unPartido.CantJug)</h2>
+                    <h3>PUBLICO: @Html.TextBoxFor(x => x.unPartido.SEPUEDE)</h3>
+                    <h2>DURACION: @Html.TextBoxFor(x => x.unPartido.Duracion)</h2>
+                    <h3>ADMINISTRADOR: @Html.DropDownListFor(x => x.unPartido.ListaDeJugadores.ToString(), ViewBag.Objeto.unPartido.ListaDeJugadores.ToString())</h3>
+                    <button type="submit" value="IR A PARTIDO"></button>
+                </form>
+                <h2>CANCELAR PARTIDO: @Html.ActionLink("EliminarPartido", "Partido", "Partido", ViewBag.Objeto, null)</h2>
+            </div>
+        </div>
+    </div>    
+</body>
+</html>

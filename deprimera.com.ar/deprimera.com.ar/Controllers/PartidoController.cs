@@ -18,7 +18,7 @@ namespace deprimera.com.ar.Controllers
             Jugador JugadorLogueado = new Jugador();
             JugadorLogueado.ID = unPartido.ID;
             JugadorLogueado = Jugadores.TraerUnJugadorPorID(JugadorLogueado.ID);
-
+            
             ViewBag.JugadorLog = JugadorLogueado; //ENVIA DATOS DEL JUGADOR LOGUEADO A VISTA
             unPartido.Cancha = Canchas.TraerCanchaPorId(unPartido.IdCancha);
             ViewBag.Partido = unPartido;
@@ -33,23 +33,27 @@ namespace deprimera.com.ar.Controllers
             AgregarJugadorAPartido.IdPartido = PartidoEnBlanco.ID;
             AgregarJugadorAPartido.IdJugador = unJugador.ID;
             AgregarJugadorAPartido.Rol = "Admin";
-            AgregarJugadorAPartido.Estado = "";
+            AgregarJugadorAPartido.Estado = "Titular";
+            AgregarJugadorAPartido.NombreJugador = unJugador.Nombre;
             PartidosJugadores.AgregarJugadorAPartido(AgregarJugadorAPartido); //AGREGA AL JUGADOR A PARTIDO Y LO HACE ADMIN
 
+            PartidoEnBlanco.ID = unJugador.ID;
+            PartidoEnBlanco.ListaDeJugadores = new List<PartidoJugador>();
             PartidoEnBlanco.ListaDeJugadores.Add(AgregarJugadorAPartido); //AGREGA AL JUGADOR A LA LISTA DE LOS JUGADORES DEL EQUIPO LOCAL
+
             return IrAPerfilPartido(PartidoEnBlanco); //RETORNA AL PERFIL EQUIPO
         }
-        public ActionResult ModificarPartido(Partido unPartido, Jugador unJugador) //SE EJECUTA AL PRESIONAR CONTINUAR
+        public ActionResult ModificarPartido(ModificarPartido unObjeto) //SE EJECUTA AL PRESIONAR CONTINUAR
         {
-            unPartido = Partidos.ModificarPartidoPorID(unPartido); //MODIFICA TODOS LOS DATOS DEL PARTIDO DE LA BD
+            unObjeto.unPartido = Partidos.ModificarPartidoPorID(unObjeto.unPartido); //MODIFICA TODOS LOS DATOS DEL PARTIDO DE LA BD
 
-            foreach (PartidoJugador jugador in unPartido.ListaDeJugadores)
+            foreach (PartidoJugador jugador in unObjeto.unPartido.ListaDeJugadores)
             {
                 PartidosJugadores.ModificarPartidoJugador(jugador); //MODIFICA TODAS LOS PARTIDOSJUGADORES DEL PARTIDO DE LA BD PARA ACTUALIZAR SUS ROLES Y ESTADOS
             }
 
             HomeController Controlador = new HomeController();
-            return Controlador.IrAPartido(unJugador); //RETORNA A PARTIDO
+            return Controlador.IrAPartido(unObjeto.unJugador); //RETORNA A PARTIDO
         }
         public ActionResult EntrarAPartido(PartidoJugador unJugador) //SE EJECUTA CUANDO UN USUARIO ENTRA A UN PARTIDO YA CREADO
         {
@@ -87,6 +91,15 @@ namespace deprimera.com.ar.Controllers
             HomeController Controlador = new HomeController();
             return Controlador.IrAPartido(jugador); //RETORNA A PARTIDO
         }
+
+        public ActionResult Opciones(ModificarPartido unObjeto)
+        {
+            ViewBag.Partido = unObjeto.unPartido;
+            ViewBag.Jugador = unObjeto.unJugador;
+
+            return View();
+        }
+
         //public ActionResult IrAMisPartidos(Jugador unJugador)
         //{
         //    PartidoJugador unPartidoJugador = new PartidoJugador();

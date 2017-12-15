@@ -158,6 +158,7 @@
     <Compile Include="Models\EquiposJugadores.cs" />
     <Compile Include="Models\Jugador.cs" />
     <Compile Include="Models\Jugadores.cs" />
+    <Compile Include="Models\ModificarPartido.cs" />
     <Compile Include="Models\Partido.cs" />
     <Compile Include="Models\PartidoJugador.cs" />
     <Compile Include="Models\Partidos.cs" />
@@ -270,6 +271,7 @@
     <Content Include="Views\Equipo\EquiposConVacantes.cshtml" />
     <Content Include="Views\Equipo\BuscarEquipos.cshtml" />
     <Content Include="Views\Partido\BuscarPartidos.cshtml" />
+    <Content Include="Views\Partido\Opciones.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
