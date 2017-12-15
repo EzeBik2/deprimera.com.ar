@@ -37,7 +37,10 @@ namespace deprimera.com.ar.Controllers
             AgregarJugadorAPartido.NombreJugador = unJugador.Nombre;
             PartidosJugadores.AgregarJugadorAPartido(AgregarJugadorAPartido); //AGREGA AL JUGADOR A PARTIDO Y LO HACE ADMIN
 
+<<<<<<< HEAD
             PartidoEnBlanco.ID = unJugador.ID;
+=======
+>>>>>>> 89f560b032fbcfe30db6542cb1d0110c4d323953
             PartidoEnBlanco.ListaDeJugadores = new List<PartidoJugador>();
             PartidoEnBlanco.ListaDeJugadores.Add(AgregarJugadorAPartido); //AGREGA AL JUGADOR A LA LISTA DE LOS JUGADORES DEL EQUIPO LOCAL
 

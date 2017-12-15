@@ -54,6 +54,7 @@
                             ROL
                         </td>
                     </tr>
+<<<<<<< HEAD
                     <tr>
                         @for (int i = 0; i+1 < unObjeto.unPartido.ListaDeJugadores.Count; i++)
                         {
@@ -69,6 +70,28 @@
                             </td>
                         }
                     </tr>
+=======
+    @{
+        for (int i = 0; i < unPartido.ListaDeJugadores.Count; i++)
+        {
+            <tr>
+                <td>
+                    @unPartido.ListaDeJugadores[i].IdJugador;
+                </td>
+                <td>
+                    @unPartido.ListaDeJugadores[i].NombreJugador;
+                </td>
+                <td>
+                    @unPartido.ListaDeJugadores[i].Estado;
+                </td>
+                <td>
+                    @unPartido.ListaDeJugadores[i].Rol;
+                </td>
+            </tr>
+            i++;
+        }
+    }
+>>>>>>> 89f560b032fbcfe30db6542cb1d0110c4d323953
                 </table>
             </div>
             <div class="Opciones" style="text-align: center;">
@@ -93,6 +116,7 @@
                         </td>
                     </tr>
                     <tr>
+<<<<<<< HEAD
                         @for (int o = 0; o < unObjeto.unPartido.ListaDeJugadores.Count; o++)
                         {
                             <td>
@@ -106,6 +130,20 @@
                             </td>
                             <td>
                                 @unObjeto.unPartido.ListaDeJugadores[o].Rol
+=======
+                        @for (int o = 0; o < unPartido.ListaDeJugadores.Count; o++){
+                            <td>
+                                @unPartido.ListaDeJugadores[o].IdJugador;
+                            </td>
+                            <td>
+                                @unPartido.ListaDeJugadores[o].NombreJugador;
+                            </td>
+                            <td>
+                                @unPartido.ListaDeJugadores[o].Estado;
+                            </td>
+                            <td>
+                                @unPartido.ListaDeJugadores[o].Rol;
+>>>>>>> 89f560b032fbcfe30db6542cb1d0110c4d323953
                             </td>
                             o++;
                         }
@@ -114,6 +152,7 @@
             </div>
         </section>
         <section class="BARRA">
+<<<<<<< HEAD
             @if (unObjeto.unPartido.IdCancha > 0 && unObjeto.unPartido.Fecha > DateTime.Today)
             {
                 <a class="Abajo" href="@Url.Action("Modificar", "Partido", unObjeto, null)">
@@ -122,6 +161,13 @@
                 </a>
             }            
             <a class="Abajo" style="width:280px;" href="@Url.Action("Direccion", "Partido", unObjeto, null)">
+=======
+            <a class="Abajo" href="@*@Url.Action("Modificar", "Partido", unPartido, null, ViewBag.JugadorLog, null)*@">
+                <h2>Continuar</h2>
+                <img class="Iconos" src="~/Images/pelota.png" style="height: 40px; width: 40px; margin-left: 94px; margin-top: 8px;" />
+            </a>
+            <div class="Abajo" style="width:280px;">
+>>>>>>> 89f560b032fbcfe30db6542cb1d0110c4d323953
                 <h2>Direccion De Equipo</h2>
                 <img class="Iconos" src="~/Images/direccion.png" style="height: 40px; width: 50px; margin-left: 118px; margin-top: 8px;" />
             </a>
@@ -134,8 +180,13 @@
             </div>
             @for (int e = 0; e < unObjeto.unPartido.ListaDeJugadores.Count; e++)
             {
+<<<<<<< HEAD
                 if (unObjeto.unPartido.ListaDeJugadores[e].IdJugador == ViewBag.JugadorLog.ID)
                 {   
+=======
+                if (unPartido.ListaDeJugadores[e].IdJugador == ViewBag.JugadorLog.ID)
+                {
+>>>>>>> 89f560b032fbcfe30db6542cb1d0110c4d323953
                     <a class="Abajo" href="@Url.Action("SalirDelPartido", "Partido", ViewBag.JugadorLog, null)">
                         <h2>SALIR DEL PARTIDO</h2>
                         <img class="Iconos" src="~/Images/volver.png" style="height: 40px; width: 40px; margin-left: 94px; margin-top: 8px;" />

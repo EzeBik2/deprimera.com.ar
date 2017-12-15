@@ -24,6 +24,7 @@ namespace deprimera.com.ar.Models
         public static Partido ArmarPartido(Partido unPartido)
         {
             Partido unPartido2 = new Partido();
+<<<<<<< HEAD
             string dt;
             string dt2;
             DateTime date = DateTime.Now;
@@ -36,6 +37,12 @@ namespace deprimera.com.ar.Models
             {
                 ConectarDB();
                 querystr = "INSERT into Partidos (id, fecha, idcancha, cantjug, idcamiseta1, idcamiseta2, sepuede, duracion, calificacion, cantidaddevotos) VALUES (" + 0 + ", '" + unPartido.Fecha.ToString().Replace("/", "-") + "', " + unPartido2.IdCancha + ", " + unPartido2.CantJug + ", " + unPartido2.IdCamiseta1 + ", " + unPartido2.IdCamiseta2 + ", '" + unPartido2.SEPUEDE + "', " + unPartido2.Duracion + ", " + unPartido2.Calificacion + ", " + unPartido2.CantidedDeVotos +" )";
+=======
+            try
+            {
+                ConectarDB();
+                querystr = "INSERT into Partidos (id, fecha, idcancha, cantjug, idcamiseta1, idcamiseta2, sepuede, duracion, calificacion, cantidaddevotos) VALUES (" + 0 + ", '" + unPartido.Fecha.ToString("yyyy-MM-dd HH:mm:ss") + "', " + unPartido2.IdCancha + ", " + unPartido2.CantJug + ", " + unPartido2.IdCamiseta1 + ", " + unPartido2.IdCamiseta2 + ", '' , " + unPartido2.Duracion + ", " + unPartido2.Calificacion + ", " + unPartido2.CantidedDeVotos + ")";
+>>>>>>> 89f560b032fbcfe30db6542cb1d0110c4d323953
                 cmdMySQL = new MySqlCommand(querystr, connMySQL);
                 int resultado = (int)cmdMySQL.ExecuteNonQuery();
                 if (resultado == 1)

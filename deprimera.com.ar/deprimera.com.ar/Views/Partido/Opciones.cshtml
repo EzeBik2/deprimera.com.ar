@@ -24,10 +24,10 @@
                     <h2>CANTIDAD DE JUGADORES: @Html.TextBoxFor(x => x.unPartido.CantJug)</h2>
                     <h3>PUBLICO: @Html.TextBoxFor(x => x.unPartido.SEPUEDE)</h3>
                     <h2>DURACION: @Html.TextBoxFor(x => x.unPartido.Duracion)</h2>
-                    <h3>ADMINISTRADOR: @Html.DropDownListFor(x => x.unPartido.ListaDeJugadores.ToString(), ViewBag.Objeto.unPartido.ListaDeJugadores.ToString())</h3>
+                    @*<h3>ADMINISTRADOR: @Html.DropDownListFor(x => x.unPartido.ListaDeJugadores.ToString(), ViewBag.Objeto.unPartido.ListaDeJugadores.ToString())</h3>*@
                     <button type="submit" value="IR A PARTIDO"></button>
                 </form>
-                <h2>CANCELAR PARTIDO: @Html.ActionLink("EliminarPartido", "Partido", "Partido", ViewBag.Objeto, null)</h2>
+                @*<h2>CANCELAR PARTIDO: @Html.ActionLink("EliminarPartido", "Partido", "Partido", ViewBag.Objeto, null)</h2>*@
             </div>
         </div>
     </div>    
